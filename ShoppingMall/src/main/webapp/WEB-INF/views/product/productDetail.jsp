@@ -82,90 +82,85 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                     </div>
                 </nav>  
             </div>
-			<h3 class="text-center">해더</h3>
+            <h3 class="text-center">제품 상세보기</h3>
             </header>
-            <!-- 카테고리 네비 -->
-            <ul class="nav nav-tabs">
-    
-                <li class="nav-item dropdown"><a
-                    class="nav-link dropdown-toggle"
-                    data-bs-toggle="dropdown" href="#" role="button"
-                    aria-expanded="false">카테고리</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/joo/product/productsList">모아보기</a></li>
-                        <li><a class="dropdown-item" href="/joo/product/productsList">소주</a></li>
-                        <li><a class="dropdown-item" href="/joo/product/productsList">맥주</a></li>
-                        <li><a class="dropdown-item" href="/joo/product/productsList">와인</a></li>
-                        <li><a class="dropdown-item" href="/joo/product/productsList">양주</a></li>
-                    </ul></li>
-                <li class="nav-item"><a class="nav-link" href="/joo/product/productsNewList">신상</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/joo/product/productsHotList">랭킹</a></li>
-                <li class="nav-item"><a class="nav-link" href="/joo/post/postList">공지사항/이벤트</a></li>
-            </ul>
             
-            <main  class="my-1 p-5 text-bg-dark">
-                <!-- 공지글 상세보기 -->
-                <h1 class="text-center">
-                    바디(메인베너)
-                </h1>
+            <main class="text-bg-dark p-3 my-2">
                 
-                <!-- 반복문으로 이벤트 자동으로 만들기 -->
-                <div id="carouselExampleIndicators" class="carousel slide"
-                    data-b  s-ride="true">
-                    <div class="carousel-indicators">
-                        <button type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                        <a href="/joo/post/postDetail">
-                            <img src="./static/assets/bannerImages/001.jpg" class="d-block w-100" alt="bannerImege01">
-                        </a>
-                        </div>
-                        <div class="carousel-item">
-                        <a href="/joo/post/postDetail">
-                            <img src="./static/assets/bannerImages/002.jpg" class="d-block w-100" alt="bannerImege02">
-                        </a>
-                        </div>
-                        <div class="carousel-item">
-                        <a href="/joo/post/postDetail">
-                            <img src="./static/assets/bannerImages/003.jpg" class="d-block w-100" alt="bannerImege03">
-                        </a>
+                <!-- main head : 사진과, 결제창 -->
+                <div class="container text-center">
+                <div class="row">
+                
+                    <!-- 이미지 영역 -->
+                    <div class="col-md-8">
+                        <div>
+                        <img src="../static/assets/porducts/name1/1.png" class="img-fluid" alt="headImage">
                         </div>
                     </div>
-                <button class="carousel-control-prev" type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"
-                        aria-hidden="true"></span> <span
-                        class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon"
-                        aria-hidden="true"></span> <span
-                        class="visually-hidden">Next</span>
-                </button>
-            </div>
 
-        </main>
-        <footer class="my-1 p-3 text-bg-dark">
+                    <!-- 결제/상세 설명 영역 -->
+                    <div class="col-6 col-md-4">
+                        
+                        <h1><strong>-제품이름-</strong></h1>
+                        <div>-제품설명- 소주는 옹기숙성을 거친 감압 증류방식으로 탄생한 전통 증류식 소주입니다.</div>
+                        <hr/>
+                        <div class="dropdown-center">
+
+                            <select class="form-select form-select-sm"
+                                aria-label=".form-select-sm example">
+                                <option selected>[필수]옵션을 선택해 주세요</option>
+                                <option value="1">선택지1 - 금액 원</option>
+                                <option value="2">선택지2 - 금액 원</option>
+                                <option value="3">선택지3 - 금액 원</option>
+                            </select>
+
+                            <div>
+                                <!-- 옵션 클릭시 제품이 추가되는 부분 -->
+                                <hr/>
+                                옵션추가시 상품이 추가될 부분
+                                <hr/>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-block">
+                                <button class="btn btn-primary"
+                                    type="button">주문하기</button>
+                                <button class="btn btn-primary"
+                                    type="button">장바구니</button>
+                            </div>
+                        </div>
+
+                    </div>
+                
+                
+                
+                </div>
+                </div>
+                <!-- main body : 사진으로 된 설명 페이지-->
+                <div class="mainBody">
+                    <hr/>
+                    
+                    <div>
+                        <img src="../static/assets/porducts/name1/2.png" class="rounded mx-auto d-block" alt="bodyImage">
+                    </div>
+                    
+                </div>
+                
+                <!-- main foot : 약관및 기타 정보(배송비및 교환환불)사항 -->
+                <div class="mainFoot">
+                    <hr/>
+                    <div>
+                        <img src="../static/assets/porducts/add/1.png" class="rounded mx-auto d-block" alt="footImage">
+                    </div>                    
+                </div>
+            </main> 
+                       
+            <footer class="my-1 p-3 text-bg-dark">
             <!-- 기업정보, 홈 인스타, 페이스북, 등등 필한거 -->
-            <h1 class="text-center">풋터</h1>
+                <h1 class="text-center">풋터</h1>
             
-            <a href="">home</a>
-        </footer>
-            
+                <a href="#">home</a>
+            </footer>
+			
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 			crossorigin="anonymous"></script>
