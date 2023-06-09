@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,7 +174,8 @@
 
             <!-- Q&A 상품 문의 목록 -->
             <div class="container mt-4">
-                <h5>Q & A 상품문의 (총 x건)</h5>
+                <h5>Q & A 상품문의 (총 ${questionsList.size()}건)</h5>
+               
                 <table class="table table-striped" id="QuestionsList">
                     <thead>
                         <tr>
@@ -185,7 +188,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- TODO: 여기에 문의목록  JavaScript 코드 삽입 -->
+                        <c:forEach items="${questionsList}" var="question">
+                        <tr>
+                            <td>${question.id}</td>
+                            <td>${question.is_answered}</td>
+                            <td>
+                                <c:url var="QuestiondetailPage" value="/questions/detail" >
+                                        <c:param name="id" value="${ question.id }" />
+                                </c:url>
+                                <a href="${ QuestiondetailPage }">${question.qtitle}</a>
+                           </td>
+                            <td>${question.qcontent}</td>
+                            <td>${question.u_id}</td>
+                            <td>
+                                <fmt:formatDate
+                                        value="${question.qcreated_time}"
+                                        pattern="yyyy-MM-dd HH:MM:mm" />
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <div class="text-center">
@@ -196,19 +217,22 @@
                     </nav>
                 </div>
                 <div class="text-end">
-                    <button onclick="window.location.href='/joo/questions/questionCreate'"  type="button" class="btn btn-primary"
+                    <button
+                        onclick="window.location.href='/joo/questions/questionCreate'"
+                        type="button" class="btn btn-primary"
                         id="QuestionsCreateBtn">작성하기</button>
                 </div>
 
                 <style>
-                #QuestionsList {
-                    color: white;
-                 }
-                #QuestionsCreateBtn {
-                    background-color: black;
-                    color: white;
-                 }
-                </style>
+#QuestionsList {
+    color: white;
+}
+
+#QuestionsCreateBtn {
+    background-color: black;
+    color: white;
+}
+</style>
             </div>
         </main>
 

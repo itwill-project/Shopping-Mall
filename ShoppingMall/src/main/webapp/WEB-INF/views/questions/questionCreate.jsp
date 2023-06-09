@@ -122,44 +122,60 @@
 
         <main class="my-1 p-5 text-bg-dark">
             <h3>문의 작성</h3>
-            <form>
+            
+            <form  method="post">
                 <div>
-                    <label for="questionType">문의 유형</label><br> <input
-                        type="radio" id="productQuestion"
-                        name="questionType" value="product" checked>
-                    <label for="productQuestion">상품문의</label> <input
-                        type="radio" id="otherQuestion"
-                        name="questionType" value="other"> <label
-                        for="otherQuestion">기타문의</label>
+                    <label for="userId">사용자 아이디</label><br> 
+                    <input type="text" id="userId" name= "u_id" value=""  >
+                </div>
+                
+                <div>
+                    <label for="productId">상품 아이디</label>
+                    <br>
+                    <input type="text" id="productId" name= "p_id" value="" >
+                </div>
+                
+                <div>
+                    <label for="questionType">문의 유형</label>
+                    <input type="text" id= "questionType" name="qtype" value="" />
+                    <br>
+                 </div>
+                    
+                        <!-- <input type="radio" id="productQuestion" name="qtype" value="product" checked>
+                    <label for="productQuestion">상품문의</label> 
+                        <input type="radio" id="otherQuestion" name="qtype" value="other"> 
+                        
+                    <label  for="otherQuestion">기타문의</label>
+                </div> -->
+                <%-- <div>
+                    <label for="productName">상품 이름</label>
+                    <br> 
+                        <input type="text" id="productName" name="productName" value="${ productName }" >
                 </div>
                 <div>
-                    <label for="productName">상품 이름</label><br> <input
-                        type="text" id="productName" name="productName"
-                        value="" readonly>
-                </div>
-                <div>
-                    <label for="productPrice">상품 가격</label><br> <input
-                        type="text" id="productPrice"
-                        name="productPrice" value="" readonly>
+                    <label for="productPrice">상품 가격</label>
+                    <br> 
+                        <input type="text" id="productPrice" name="productPrice" value="${ productPrice }" >
                 </div>
                 <div id="questionOptions">
-                    <label for="questionOptionSelect ">문의 옵션</label><br> <select
-                        id="questionOptionSelect" name="questionOptionSelect">
+                    <label for="questionOptionSelect ">문의 옵션</label>
+                    <br>
+                        <select id="questionOptionSelect" name="questionOptionSelect">
                         <option value="">선택하세요</option>
                     </select>
+                </div> --%>
+                <div>
+                    <label for="questionTitle">문의 제목</label>
+                    <br> 
+                        <input type="text" id="questionTitle" name="qtitle" value="" >
                 </div>
                 <div>
-                    <label for="questionTitle">문의 제목</label><br> <input
-                        type="text" id="questionTitle"
-                        name="questionTitle" value="" readonly>
+                    <label for="questionContent">문의 내용</label>
+                    <br>
+                    <textarea id="questionContent" name="qcontent" rows="5"></textarea>
                 </div>
                 <div>
-                    <label for="questionContent">문의 내용</label><br>
-                    <textarea id="questionContent"
-                        name="questionContent" rows="5"></textarea>
-                </div>
-                <div>
-                    <button type="submit">문의 작성</button>
+                    <input type="submit" value="문의 작성">
                 </div>
             </form>
         </main>
@@ -178,8 +194,7 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"></script>
-        <script
-            src="../static/js/questionPage/questionCreateCategorySelect.js"></script>
+
     </div>
 </body>
 </html>

@@ -43,8 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     otherQuestionRadio.addEventListener('change', function() {
         if (otherQuestionRadio.checked) {
-            productNameInput.value = '';
-            productPriceInput.value = '';
             questionTitleInput.value = '';
             questionOptions.style.display = 'block';
             otherQuestionOptions();

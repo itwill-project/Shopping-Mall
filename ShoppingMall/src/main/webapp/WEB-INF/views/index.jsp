@@ -69,7 +69,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                                     </li>
                                 <!-- 최근본 상품은 모달로 처리 -->
                                 <li class="nav-item"><a class="nav-link" href="">최근본상품</a></li>
-                                <li class="nav-item"><a class="nav-link" href="">문의하기</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/joo/questions/questionsList">문의하기</a></li>
+                                
                             </ul>
                             <!-- 검색 페이지 -->
                             <form class="d-flex" role="search" action="/joo/product/productsList">
