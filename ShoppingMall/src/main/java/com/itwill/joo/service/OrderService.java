@@ -29,7 +29,7 @@ public class OrderService {
 		return orderRepository.selectOrderHistory(id);
 	}
 
-	public int deleteByOrderId(long id) {
+	public int deleteByOrderId(long id) { 
 		int resultSum = 0;
 
 		resultSum += orderRepository.deleteOrder(id);

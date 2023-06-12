@@ -21,7 +21,7 @@
         UPHONE, UEMAIL, UCURRENT_POINT
         from USERS
         where ID
-        = #{id}
+        = #{id} 
     </select>
 
     <!-- 주문 내역 조회 페이지 상품, 배송 정보 -->

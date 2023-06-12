@@ -17,7 +17,7 @@ public interface OrderRepository {
 
 	int deleteOrder(long id);
 	int deleteOrderProduct(long id);
-	int deleteDelivery(long id);
+	int deleteDelivery(long id); 
 
 	int updateBuyComple(long id);
 }
