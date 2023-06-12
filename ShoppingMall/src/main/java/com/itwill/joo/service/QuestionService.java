@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.joo.dto.question.QuestionDetailDto;
+import com.itwill.joo.dto.question.QuestionUpdateDto;
 import com.itwill.joo.domain.Question;
 import com.itwill.joo.dto.question.QuestionCreateDto;
 import com.itwill.joo.dto.question.QuestionsListDto;
@@ -17,29 +19,94 @@ import lombok.extern.slf4j.Slf4j;
 public class QuestionService {
 
     // 생성자에 의한 의존성 주입
-    private final QuestionRepository questionRepository;
-
-    // 문의사항 목록 페이지
+private final QuestionRepository questionRepository;
+    
+    // 상품 Service
+    
+    // 상품 문의 목록
     public List<QuestionsListDto> read() {
         log.info("read()");
-
-        List<Question> list = questionRepository.selectOrderByDesc();       
-
+    
+        List<Question> list = questionRepository.selectWhereTypeProduct();
+        
         return list.stream().map(QuestionsListDto::fromEntity).toList();
     }
-
-    // 문의사항 상세보기
-    public Question read(long id) {
-        log.info("read(id={}", id);
-
-        return questionRepository.selectById(id);
+    
+    // 상품 문의 상세보기
+    public QuestionDetailDto read(long id) {
+        log.info("read(id)");
+        
+        Question entity = questionRepository.selectById(id);
+        
+        return QuestionDetailDto.fromEntity(entity);
+    }
+    
+    // 상품 문의 작성
+    public int create(QuestionCreateDto dto) {
+        log.info("create(question)", dto);
+        
+        return questionRepository.insert(dto.toEntity());
     }
 
-    //새 문의사항 작성 페이지
-   public int questionCreate(QuestionCreateDto dto) {
-       log.info("questionCreate({})", dto);
-
-       return questionRepository.insert(dto.toEntity());
-   }
-
+    // 상품 문의 수정
+    public int update(QuestionUpdateDto dto) {
+        log.info("update(question)", dto);
+        
+        return questionRepository.updateTitleAndContent(dto.toEntity());
+    }
+    
+    // 상품 문의 삭제
+    public int delete(long id) {
+        log.info("delete(id)", id);
+        
+        return questionRepository.deleteById(id);
+        
+    }
+    
+    
+    
+    // QNA service
+    
+    // Qna 목록
+    public List<QuestionsListDto> readQna() {
+        log.info("read()");
+    
+        List<Question> list = questionRepository.selectWhereTypeQnA();
+        
+        return list.stream().map(QuestionsListDto::fromEntity).toList();
+    }
+    
+    //  고객 문의 상세보기
+    public QuestionDetailDto readQna(long id) {
+        log.info("read(id)");
+        
+        Question entity = questionRepository.selectById(id);
+        
+        return QuestionDetailDto.fromEntity(entity);
+    }
+  
+    
+    // 고객 문의 작성
+    public int createQna(QuestionCreateDto dto) {
+        log.info("createQna(question)", dto);
+        
+        return questionRepository.insert(dto.toEntity());
+    }
+    
+    // 고객 문의 수정
+    public int updateQna(QuestionUpdateDto dto) {
+        log.info("updateQna(question)", dto);
+        
+        return questionRepository.updateTitleAndContent(dto.toEntity());
+    }
+    
+    // 고객 문의 삭제
+    public int deleteQna(long id) {
+        log.info("deleteQna(id)", id);
+        
+        return questionRepository.deleteById(id);
+        
+    }
+    
+    
 }

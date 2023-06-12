@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserCreateDto {
 	
-	private long id;
+	private long id;    // questionCreateDto에서 u_id와 같음.
 	
-	private String loginId; // 로그인 아이디
+	private String loginId; // 로그인 아이디 --> 이 loginId 를 불러오고 싶어.
 	private String password; // 비밀번호
 	private String name; // 이름
 	private String email; // 이메일
@@ -27,7 +27,7 @@ public class UserCreateDto {
 	
 	public User toEntity() {
 		return User.builder()
-				.login_id(loginId)
+				.login_id(loginId) 
 				.upassword(password)
 				.uname(name)
 				.uemail(email)

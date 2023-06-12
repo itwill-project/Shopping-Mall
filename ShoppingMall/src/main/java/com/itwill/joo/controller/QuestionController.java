@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.joo.dto.question.QuestionDetailDto;
+import com.itwill.joo.dto.question.QuestionUpdateDto;
 import com.itwill.joo.dto.question.QuestionCreateDto;
 import com.itwill.joo.dto.question.QuestionsListDto;
 import com.itwill.joo.service.QuestionService;
@@ -19,13 +22,25 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor // 생성자 자동 생성
-@RequestMapping("/questions") // "/questions" 로 시작하는 주소 다처리
+@RequestMapping("/question") // "/questions" 로 시작하는 주소 다처리
 @Controller
 public class QuestionController {
 
     private final UserService userService;
     private final QuestionService questionService;
 
+    
+    @GetMapping("/questionDetail")
+    public void questionDetail(@RequestParam("id") long id, Model model) {
+        log.info("detail(id={})", id);
+        
+        QuestionDetailDto dto = questionService.read(id);
+        
+        model.addAttribute("question", dto);
+        
+        
+    }
+    
     @GetMapping("/questionsList")
     public void list(Model model) {
         log.info("GET: productQuestionsList()");
@@ -39,21 +54,129 @@ public class QuestionController {
     }
 
     @GetMapping("/questionCreate")
-    public void questionCreate(Principal principal, Model model) {
+    public void create(Principal principal, Model model) {
         log.info("GET: questionCreate()");
-        
+            
         long userId = userService.select(principal.getName()).getId();
         model.addAttribute("userId", userId);
     }
 
     @PostMapping("/questionCreate") 
-	public String questionCreate(QuestionCreateDto dto) {
+	public String create(QuestionCreateDto dto) {
         log.info("POST: questionCreate() - {}", dto);
 
-        int result = questionService.questionCreate(dto);
+        int result = questionService.create(dto);
         log.info("Question 등록 결과={}", result);
 
-        return "redirect:/questions/questionsList";
+        return "redirect:/question/questionsList";
     }
+    
+    // GET매핑으로 수정하
+    @GetMapping("/questionModify")
+    public void modify(long id, Model model) {
+        log.info("questionModify(id={}", id);
+        
+        QuestionDetailDto dto = questionService.read(id);
+        model.addAttribute("question", dto);
+    }
+    
+    @PostMapping("/questionDelete")
+    public String delete( long id) {
+        log.info("questionDelete(id={}", id);
+        
+        int result =questionService.delete(id);
+        log.info("문의 삭제 결과={}", result);
+        
+        return "redirect:/question/questionsList";
+       
+    }
+    
+    @PostMapping("/questionUpdate")
+    public String update(QuestionUpdateDto dto) {
+        log.info("questionUpdate(dto={}", dto);
+        
+        int result = questionService.update(dto);
+        log.info("업데이트 결과={}", result);
+        
+        return "redirect:/question/questionDetail?id=" + dto.getId();
+    }
+    
+    // 아래부터는 QNA 컨트롤러
+    
+    // QNA 목록
+    @GetMapping("/questionQnaList")
+    public void questionsQnaList(Model model) {
+        log.info("questionQnaList()");
+        
+        List<QuestionsListDto> list = questionService.readQna();
+        
+        model.addAttribute("questionQnaList",list);
+    }
+    
+    // QNA 상세보기 
+    @GetMapping("/questionQnaDetail")
+    public void questionQnaDetail(@RequestParam("id") long id, Model model) {
+        log.info("detail(id={})", id);
+        
+        QuestionDetailDto dto = questionService.readQna(id);
+        
+        model.addAttribute("question", dto);
+        
+        
+    }
+    
+    
+    //QNA 작성 get mapping
+    @GetMapping("/questionQnaCreate")
+    public void createQna(Principal principal, Model model) {
+        log.info("GET: quesitonCreate()");
+        
+        long userId = userService.select(principal.getName()).getId();
+        model.addAttribute("userId", userId);
+    }
+    
+  
+    
+    // craete Post 작성 보내기
+    @PostMapping("/questionQnaCreate")
+    public String createQna(QuestionCreateDto dto) {
+        log.info("POST: create({})", dto);
+        
+        int result = questionService.createQna(dto);
+        log.info("문의사항 작성결과 = {}", result);
+        
+        return "redirect:/question/questionQnaList";
+    }
+    
+    // QNA GET매핑으로 수정하기
+    @GetMapping("/questionQnaModify")
+    public void modifyQna(long id, Model model) {
+        log.info("questionModify(id={}", id);
+        
+        QuestionDetailDto dto = questionService.readQna(id);
+        model.addAttribute("question", dto);
+    }
+    
+    @PostMapping("/questionQnaDelete")
+    public String deleteQna( long id) {
+        log.info("questionDelete(id={}", id);
+        
+        int result =questionService.deleteQna(id);
+        log.info("문의 삭제 결과={}", result);
+        
+        return "redirect:/question/questionQnaList";
+       
+    }
+    
+    @PostMapping("/questionQnaUpdate")
+    public String updateQna(QuestionUpdateDto dto) {
+        log.info("questionUpdate(dto={}", dto);
+        
+        int result = questionService.updateQna(dto);
+        log.info("업데이트 결과={}", result);
+        
+        return "redirect:/question/questionQnaDetail?id=" + dto.getId();
+    }
+    
 
 }

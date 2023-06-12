@@ -19,6 +19,10 @@ public class QuestionsListDto {
     private int is_answered;
     private String qtitle;
     private String qcontent;
+    
+    // 삭제 예정
+    private String qtype;
+    
     private long u_id;
     private Timestamp qcreated_time;
 
@@ -27,6 +31,7 @@ public class QuestionsListDto {
         return QuestionsListDto.builder()
         .id(entity.getId())
         .is_answered(entity.getIs_answered())
+        .qtype(entity.getQtype())
         .qtitle(entity.getQtitle())
         .qcontent(entity.getQcontent())
         .u_id(entity.getU_id())

@@ -4,12 +4,21 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.itwill.joo.repository.QuestionRepository">
+
     <insert id="insert">
-        insert into QUESTIONS (U_ID, P_ID, QTITLE, QCONTENT, QTYPE,
-        QCREATED_TIME, QMODIFIED_TIME, IS_ANSWERED)
-        values (#{u_id}, #{p_id}, #{qtitle}, #{qcontent},
-        #{qtype}, systimestamp, systimestamp, 0)
+        insert into QUESTIONS (U_ID, P_ID, QTITLE, QCONTENT, QTYPE, QCREATED_TIME,
+        QMODIFIED_TIME, IS_ANSWERED)
+        values (#{u_id}, #{p_id}, #{qtitle}, #{qcontent}, #{qtype}, systimestamp,
+        systimestamp, 0)
     </insert>
+
+    <select id="selectWhereTypeProduct" resultType="com.itwill.joo.domain.Question">
+        select * from QUESTIONS where QTYPE IN ('배송', '재입고', '기타 상품문의') order by ID desc
+    </select>
+    
+    <select id="selectWhereTypeQnA" resultType="com.itwill.joo.domain.Question">
+        select * from QUESTIONS where QTYPE IN ('취소관련', '주문관련', '회원정보', '서비스', '기타') order by ID desc
+    </select>
 
     <select id="selectOrderByDesc" resultType="com.itwill.joo.domain.Question">
         select * from QUESTIONS order by ID desc
@@ -18,5 +27,17 @@
     <select id="selectById" resultType="com.itwill.joo.domain.Question">
         select * from QUESTIONS where ID = #{id}
     </select>
+    
+    <update id = "updateTitleAndContent">
+        update QUESTIONS 
+        set QTITLE = #{qtitle}, QCONTENT = #{qcontent}, QMODIFIED_TIME = systimestamp
+        where ID = #{id}    
+    </update>
+    
+    <delete id = "deleteById">
+        delete from QUESTIONS where ID = #{id}    
+    </delete>
+    
+    
 
 </mapper>

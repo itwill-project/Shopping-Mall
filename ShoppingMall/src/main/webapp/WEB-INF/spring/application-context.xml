@@ -10,11 +10,12 @@
 
     <!-- bean definitions here -->
     <!-- HikariConfig hikariConfig = new HikariConfig(); --> 
-    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <!-- hikariConfig.setDriverClassName("...") 메서드 호출 -->
         <property name="driverClassName"
             value="oracle.jdbc.OracleDriver" />
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@project2_high?TNS_ADMIN=C:/wallet/Wallet_PROJECT2" />
+        <property name="jdbcUrl"
+            value="jdbc:oracle:thin:@project2_high?TNS_ADMIN=/Users/apple/Documents/wallet/Wallet_PROJECT2" />
         <property name="username" value="ADMIN" />
         <property name="password" value="Project2summer^^" />
     </bean>
