@@ -13,7 +13,9 @@
     </insert>
 
     <select id="selectWhereTypeProduct" resultType="com.itwill.joo.domain.Question">
-        select * from QUESTIONS where QTYPE IN ('배송', '재입고', '기타 상품문의') order by ID desc
+        select * from QUESTIONS 
+        where QTYPE IN ('배송', '재입고', '기타 상품문의')
+         order by ID desc
     </select>
     
     <select id="selectWhereTypeQnA" resultType="com.itwill.joo.domain.Question">

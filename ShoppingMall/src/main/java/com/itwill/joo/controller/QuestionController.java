@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.joo.dto.question.QuestionDetailDto;
 import com.itwill.joo.dto.question.QuestionUpdateDto;
+import com.itwill.joo.domain.Product;
 import com.itwill.joo.dto.question.QuestionCreateDto;
 import com.itwill.joo.dto.question.QuestionsListDto;
+import com.itwill.joo.service.ProductService;
 import com.itwill.joo.service.QuestionService;
 import com.itwill.joo.service.UserService;
 
@@ -26,15 +28,16 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class QuestionController {
 
+    private final ProductService productService;
     private final UserService userService;
     private final QuestionService questionService;
 
-    
+    //상품 디테일 페이지에서 해당 상품의 문의사항을 확인
     @GetMapping("/questionDetail")
-    public void questionDetail(@RequestParam("id") long id, Model model) {
-        log.info("detail(id={})", id);
+    public void questionDetail(@RequestParam("pid") long pid, Model model) {
+        log.info("detail(id={})", pid);
         
-        QuestionDetailDto dto = questionService.read(id);
+        QuestionDetailDto dto = questionService.read(pid);
         
         model.addAttribute("question", dto);
         
@@ -42,24 +45,32 @@ public class QuestionController {
     }
     
     @GetMapping("/questionsList")
-    public void list(Model model) {
+    public void list( Model model) {
         log.info("GET: productQuestionsList()");
 
         // 컨트롤러는 서비스 계층의 메서드를 호출한 후 서비스 기능을 수행
         List<QuestionsListDto> list = questionService.read();
-
+        
         // 뷰에 보여줄 데이터를 모델에 저장
         model.addAttribute("questionsList", list);
+
+        
         log.info("questionsList: {}", list);
     }
 
     @GetMapping("/questionCreate")
-    public void create(Principal principal, Model model) {
+    public void create(@RequestParam(name="pid", required=false ) long pid, Principal principal, Model model) {
         log.info("GET: questionCreate()");
             
         long userId = userService.select(principal.getName()).getId();
-        model.addAttribute("userId", userId);
+        Product product = productService.getProduct(pid);
+        model.addAttribute("userid", userId);
+        model.addAttribute("product", product);
+        model.addAttribute("login_id", principal.getName());
+    
+   
     }
+    
 
     @PostMapping("/questionCreate") 
 	public String create(QuestionCreateDto dto) {

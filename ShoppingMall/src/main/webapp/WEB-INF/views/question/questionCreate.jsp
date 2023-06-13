@@ -34,22 +34,33 @@
                     </li>
                 </ul>
             </nav>
+    
+    
+    
+
+
 
         <main class="my-2">
             <div class="card">
                 
                 <form method="post">
                 
+              
                     <div class="card-body">
                         <div>
-                            <label class="form-label" for="userId">사용자 번호</label>
+                            <label class="form-label" for="panme">상품이름</label>
                            <input class="form-control"
-                                type="text" id="userId" name="u_id" required />
+                                type="text" id="pname" name="pname" value="${product.pname }"  readonly />
                         </div>
                         <div class="my-2">
-                            <label class="form-label" for="productId">상품 번호</label>
+                            <label type = "hidden" class="form-label" for="userId"><!--  유저 번호 --></label>
+                            <input class="form-control" 
+                                type="hidden" id="userId" name="u_id" value="${userid }" required readonly />
+                        </div> 
+                        <div class="my-2">
+                            <label class="form-label" for="productId"><!-- 상품 번호 --></label>
                             <input class="forn-control"
-                                type="text" id="productId" name="p_id" required />
+                                type="hidden" id="productId" name="p_id" value="${product.id }" readonly />
                         </div>
                         <div class="my-2">
                             <label class="form-label" for="questionType">문의 유형</label>
@@ -71,9 +82,9 @@
                                 id="questionContent" name="qcontent" rows="5" required></textarea>
                         </div>
                          <div class="my-2">
-                            <label class="form-label" for="login_id">작성자 아이디(받아와야해)</label>
+                            <label class="form-label" for="login_id">작성자 아이디</label>
                             <input class="form-control" 
-                                type="text" id="author" name="login_id" value="${ login_id }" required />
+                                type="text" id="login_id" name="login_id" value="${login_id }" required readonly />
                         </div> 
                          
                     </div>

@@ -17,5 +17,9 @@ public interface UserRepository {
 	int createKakaoUser(User user);
 	
 	int updatePassword(String password, long id);
+	
+	
+	// 상품문의에서 필요
+	 User selectUserById(long id);
 
 }

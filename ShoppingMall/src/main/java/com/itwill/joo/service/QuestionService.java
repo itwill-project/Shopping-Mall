@@ -1,15 +1,21 @@
 package com.itwill.joo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.itwill.joo.dto.question.QuestionDetailDto;
 import com.itwill.joo.dto.question.QuestionUpdateDto;
+import com.itwill.joo.domain.Product;
 import com.itwill.joo.domain.Question;
+import com.itwill.joo.domain.User;
 import com.itwill.joo.dto.question.QuestionCreateDto;
 import com.itwill.joo.dto.question.QuestionsListDto;
+import com.itwill.joo.repository.ProductRepository;
 import com.itwill.joo.repository.QuestionRepository;
+import com.itwill.joo.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 public class QuestionService {
 
     // 생성자에 의한 의존성 주입
-private final QuestionRepository questionRepository;
+    private final UserRepository userRepository;
+    private final QuestionRepository questionRepository;
+    private final ProductRepository productRepository;
     
     // 상품 Service
     
@@ -28,8 +36,23 @@ private final QuestionRepository questionRepository;
         log.info("read()");
     
         List<Question> list = questionRepository.selectWhereTypeProduct();
+        List<QuestionsListDto> questions = new ArrayList<>();
+        for(Question q : list) {
+            long userId = q.getU_id();
+            long productId = q.getP_id();
+            User user = userRepository.selectUserById(userId);
+            Product product = productRepository.selectProductById(productId);
+            String login_id =   user. getLogin_id();
         
-        return list.stream().map(QuestionsListDto::fromEntity).toList();
+            QuestionsListDto dto = QuestionsListDto.fromEntity(q);
+            dto.setLogin_id(login_id);
+            dto.setProduct(product);
+            questions.add(dto);
+            
+        }
+        
+//        return list.stream().map(QuestionsListDto::fromEntity).toList();
+        return questions;
     }
     
     // 상품 문의 상세보기

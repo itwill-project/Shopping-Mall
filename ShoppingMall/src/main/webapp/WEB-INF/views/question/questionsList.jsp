@@ -47,6 +47,7 @@
                         <th>내용</th>
                         <th>작성자 아이디</th>
                         <th>작성시간</th>
+                        <th>제품 이름</th>
                     </tr>
                
                 </thead>
@@ -59,19 +60,20 @@
                             <td>${ question.is_answered }</td>
                             <td> 
                                 <c:url var ="QuestionDetailPage" value="/question/questionDetail">
-                                    <c:param name="id" value="${ question.id }" />
+                                    <c:param name="pid" value="${ question.id }" />
                                 </c:url>
                                 <a href="${ QuestionDetailPage }">${ question.qtitle }</a>
                             </td>
                             <td>${ question.qcontent }</td>
                             <td>
-                            $ {user.login_id }
+                            ${ question.login_id}
                             </td>
                             <td>
                                     <fmt:formatDate
                                         value="${ question.qcreated_time }"
                                         pattern="yyyy-MM-dd HH:MM:mm" />
                             </td>
+                            <td>${ question.product.pname }</td>
                         </tr>
                     </c:forEach>
                 </tbody>

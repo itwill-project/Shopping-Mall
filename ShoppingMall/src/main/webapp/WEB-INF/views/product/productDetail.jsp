@@ -113,8 +113,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 
                     <!-- 결제/상세 설명 영역 -->
                     <div class="col-6 col-md-4">
-
+<p>${ productId }</p>
                         <h1>
+                        
                             <strong>-제품이름-</strong>
                         </h1>
                         <div>-제품설명- 소주는 옹기숙성을 거친 감압 증류방식으로 탄생한 전통
@@ -194,12 +195,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                             <td>${question.is_answered}</td>
                             <td>
                                 <c:url var="QuestionDetailPage" value="/question/questionDetail" >
-                                        <c:param name="id" value="${ question.id }" />
+                                        <c:param name="pid" value="${ question.id }" />
                                 </c:url>
                                 <a href="${ QuestionDetailPage }">${question.qtitle}</a>
                            </td>
                             <td>${question.qcontent}</td>
-                            <td>${question.u_id}</td>
+                            <td>${question.login_id}</td>
                             <td>
                                 <fmt:formatDate
                                         value="${question.qcreated_time}"
@@ -217,10 +218,13 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                     </nav>
                 </div>
                 <div class="text-end">
-                    <button
+                
+                <a href="/joo/question/questionCreate?pid=${productId }">write</a>
+                
+<!--                     <button
                         onclick="window.location.href='/joo/question/questionCreate'"
                         type="button" class="btn btn-primary"
-                        id="QuestionsCreateBtn">작성하기</button>
+                        id="QuestionsCreateBtn">작성하기</button> -->
                 </div>
 
                 <style>

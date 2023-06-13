@@ -310,6 +310,23 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
             <hr/>
                 <div class="row row-cols-1 row-cols-md-5 g-4">
                 
+                
+                <!--  chat gpt 보거라. 이 아래 부분이 product.id 를 타고 들어가니깐 이거에 관한 문의만 보여주고 싶은거다. -->
+                <c:forEach items="${ products }" var="product">
+                <div class="col">
+                        <div class="card my-3 p-3" style="width: 18rem; cursor:pointer;" OnClick="location.href ='/joo/product/productDetail?pid=${product.id }'">
+                            <img src="../static/assets/productImages/001.png" class="card-img-top" alt="oneProduct">
+                            <div class="card-body">
+                                <h5 class="card-title">${ product.pname }</h5>
+                                <p class="card-text"><del>${ product.pprice }</del></p>
+                                <p class="card-text">8800원</p>
+                                <p class="card-text"> ${ product.psold }</p>
+                                <a href="/joo/product/productDetail?pid=${product.id }" class="btn btn-outline-primary col-12 mx-auto">order now</a>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+                
                     <div class="col">
                         <div class="card my-3 p-3" style="width: 18rem; cursor:pointer;" OnClick="location.href ='https://wonsoju.com/product/detail.html?product_no=27&cate_no=43&display_group=1'">
                             <img src="../static/assets/productImages/001.png" class="card-img-top" alt="oneProduct">

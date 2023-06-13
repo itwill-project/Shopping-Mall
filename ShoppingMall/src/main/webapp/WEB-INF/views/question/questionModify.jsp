@@ -23,6 +23,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <ul class="navbar-nav bg-light">
                 <li class="nav-item">
+                <span>${ signedInUser }</span>
                     <c:url var="mainPage" value="/"></c:url>
                     <a class="nav-link" href="${ mainPage }">메인 페이지</a>
                 </li>
@@ -63,8 +64,8 @@
                         <textarea class="form-control" id="qcontent" name="qcontent"  >${ question.qcontent }</textarea>
                     </div>
                     <div class="my-2">
-                        <label class="form-label" for="u_id">작성자 아이디</label>
-                        <input class="form-control" id="u_id" name="u_id" value="${ question.u_id }" readonly />
+                        <label class="form-label" for="login_id">작성자 아이디</label>
+                        <input class="form-control" id="login_id" name="login_id" value="${ login_id }" readonly />
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="qcreated_time">작성시간</label>
