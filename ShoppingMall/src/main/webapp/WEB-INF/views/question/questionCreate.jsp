@@ -36,10 +36,6 @@
             </nav>
     
     
-    
-
-
-
         <main class="my-2">
             <div class="card">
                 

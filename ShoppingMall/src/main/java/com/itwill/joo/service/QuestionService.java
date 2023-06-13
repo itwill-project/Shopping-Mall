@@ -32,11 +32,15 @@ public class QuestionService {
     // 상품 Service
     
     // 상품 문의 목록
-    public List<QuestionsListDto> read() {
+    public List<QuestionsListDto> readProductId(long p_id) {
         log.info("read()");
-    
-        List<Question> list = questionRepository.selectWhereTypeProduct();
+        
+        
+        
+        List<Question> list = questionRepository.selectWhereTypeProduct(p_id);
+        
         List<QuestionsListDto> questions = new ArrayList<>();
+        
         for(Question q : list) {
             long userId = q.getU_id();
             long productId = q.getP_id();

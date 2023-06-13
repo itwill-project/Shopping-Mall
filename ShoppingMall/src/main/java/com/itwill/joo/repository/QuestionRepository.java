@@ -18,7 +18,7 @@ public interface QuestionRepository {
   int deleteById(long id);
   
   // QnA
-  List<Question> selectWhereTypeProduct();
+  List<Question> selectWhereTypeProduct(long p_id);
   List<Question> selectWhereTypeQnA();
   
   

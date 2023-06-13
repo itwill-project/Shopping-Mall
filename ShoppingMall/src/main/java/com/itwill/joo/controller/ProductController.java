@@ -39,7 +39,7 @@ public class ProductController {
         log.info("GET: productQuestionsList()");
         
         // 컨트롤러는 서비스 계층의 메서드를 호출한 후 서비스 기능을 수행
-        List<QuestionsListDto> list = questionService.read();
+        List<QuestionsListDto> list = questionService.readProductId(pid);
         
         // 뷰에 보여줄 데이터를 모델에 저장
         model.addAttribute("questionsList", list);

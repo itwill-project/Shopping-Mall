@@ -45,11 +45,11 @@ public class QuestionController {
     }
     
     @GetMapping("/questionsList")
-    public void list( Model model) {
+    public void list( Model model, long p_id) {
         log.info("GET: productQuestionsList()");
 
         // 컨트롤러는 서비스 계층의 메서드를 호출한 후 서비스 기능을 수행
-        List<QuestionsListDto> list = questionService.read();
+        List<QuestionsListDto> list = questionService.readProductId(p_id);
         
         // 뷰에 보여줄 데이터를 모델에 저장
         model.addAttribute("questionsList", list);
@@ -79,7 +79,7 @@ public class QuestionController {
         int result = questionService.create(dto);
         log.info("Question 등록 결과={}", result);
 
-        return "redirect:/question/questionsList";
+        return "redirect:/question/questionsList?p_id=" + dto.getP_id();
     }
     
     // GET매핑으로 수정하

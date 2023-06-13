@@ -13,9 +13,12 @@
     </insert>
 
     <select id="selectWhereTypeProduct" resultType="com.itwill.joo.domain.Question">
-        select * from QUESTIONS 
-        where QTYPE IN ('배송', '재입고', '기타 상품문의')
-         order by ID desc
+        SELECT *
+FROM QUESTIONS A 
+JOIN PRODUCTS B 
+ON A.P_ID = B.ID
+WHERE A.QTYPE IN ('배송', '재입고', '기타 상품문의') AND A.P_ID = #{p_id}
+ORDER BY A.ID DESC
     </select>
     
     <select id="selectWhereTypeQnA" resultType="com.itwill.joo.domain.Question">
