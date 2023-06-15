@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security>
+  <oauth2>
+    <client>
+      <registration>
+        <kakao>
+          <client-id>106ceddf8917e2e7f047b10bfe41f185</client-id>
+          <redirect-uri>http://localhost:8081/login/oauth2/code</redirect-uri>
+          <client-authentication-method>POST</client-authentication-method>
+          <authorization-grant-type>authorization_code</authorization-grant-type>
+          <scope>profile_nickname, account_email</scope>1
+          <client-name>Kakao</client-name>
+        </kakao>
+      </registration>
+      <provider>
+        <kakao>
+          <authorization-uri>https://kauth.kakao.com/oauth/authorize</authorization-uri>
+          <token-uri>https://kauth.kakao.com/oauth/token</token-uri>
+          <user-info-uri>https://kapi.kakao.com/v2/user/me</user-info-uri>
+          <user-name-attribute>id</user-name-attribute>
+        </kakao>
+      </provider>
+    </client>
+  </oauth2>
+</security>

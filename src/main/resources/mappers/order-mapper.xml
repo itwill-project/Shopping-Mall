@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwill.joo.repository.OrderRepository">
+    <!-- 주문 상세페이지 상품정보 -->
+    <select id="selectOrderedProduct"
+        resultType="com.itwill.joo.dto.order.OrderedProductDto">
+        select ID, PDETAIL_IMAGE, PNAME, PPRICE, PSTOCK
+        from
+        PRODUCTS
+        where ID = #{id}
+    </select>
+
+    <!-- 주문 상세페이지 주문자정보 -->
+    <select id="selectOrdererInfo"
+        resultType="com.itwill.joo.dto.order.OrdererInfoDto">
+        select ID, UNAME, UPOSTCODE, USTREET,
+        UDETAIL_ADDRESS,
+        UPHONE, UEMAIL, UCURRENT_POINT
+        from USERS
+        where ID
+        = #{id}
+    </select>
+
+    <!-- 주문 내역 조회 페이지 상품, 배송 정보 -->
+    <select id="selectOrderHistory"
+        resultType="com.itwill.joo.dto.order.OrderHistoryDto">
+        select P.PTITLE_IMAGE, P.pname, P.pstock, OP.pprice,
+        O.ocreated_time, D.dstatus, D.dmodified_time
+        from PRODUCTS P,
+        ORDERS O, ORDER_PRODUCTS OP, DELIVERIES D
+        where O.ID = OP.O_ID
+        and OP.P_ID = P.ID
+        and D.O_ID = O.ID
+        and O.ID = #{id}
+    </select>
+
+    <!-- 주문 내역에서 주문취소를 누를 시 주문배송과 관련된 3개의 delete 쿼리문 실행 -->
+    <delete id="deleteOrder">
+        DELETE FROM ORDERS WHERE ID = #{id}
+    </delete>
+
+    <delete id="deleteOrderProduct">
+        DELETE FROM ORDER_PRODUCTS WHERE O_ID = #{id}
+    </delete>
+
+    <delete id="deleteDelivery">
+        DELETE FROM DELIVERIES WHERE O_ID = #{id}
+    </delete>
+
+    <!-- 구매확정 버튼 클릭 시 배송완료 -> 구매확정 상태로 변경 -->
+    <update id="updateBuyComple">
+        update DELIVERIES
+        set dstatus = '구매확정'
+        where ID = #{id}
+    </update>
+
+
+</mapper>

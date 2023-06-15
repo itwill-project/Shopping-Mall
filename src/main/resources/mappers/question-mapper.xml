@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwill.joo.repository.QuestionRepository">
+    <insert id="insert">
+        insert into QUESTIONS (U_ID, P_ID, QTITLE, QCONTENT, QTYPE,
+        QCREATED_TIME, QMODIFIED_TIME, IS_ANSWERED)
+        values (#{u_id}, #{p_id}, #{qtitle}, #{qcontent},
+        #{qtype}, systimestamp, systimestamp, 0)
+    </insert>
+
+    <select id="selectOrderByDesc" resultType="com.itwill.joo.domain.Question">
+        select * from QUESTIONS order by ID desc
+    </select>
+
+    <select id="selectById" resultType="com.itwill.joo.domain.Question">
+        select * from QUESTIONS where ID = #{id}
+    </select>
+
+</mapper>
