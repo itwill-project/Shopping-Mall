@@ -40,10 +40,18 @@
                                 </li>
                                 
                                 <!-- TODO : 로그인 회원가입 링크로 이동(로그인상태일때 비가시화) -->
-                                <li class="nav-item"><a
-                                    class="nav-link" href="/joo/user/sign">로그인/회원가입</a></li>
-                                    
-                                <li class="nav-item dropdown"><a
+                                <sec:authorize access="isAnonymous()">
+                                    <li class="nav-item"><a
+                                        class="nav-link" href="/joo/user/login">로그인</a></li>
+                                    <li class="nav-item"><a
+                                        class="nav-link" href="/joo/user/join">회원가입</a></li>
+                                </sec:authorize>
+                             
+                                 <sec:authorize access="isAuthenticated()">
+                                 <li class="nav-item"><a
+                                        class="nav-link" href="/joo/user/logout">Logout</a></li>
+                                 
+                                 <li class="nav-item dropdown"><a
                                     class="nav-link dropdown-toggle"
                                     href="#" role="button"
                                     data-bs-toggle="dropdown"
@@ -61,7 +69,7 @@
                                             href="/joo/user/myOrder">주문 내역</a></li>
                                         <li><a
                                             class="dropdown-item"
-                                            href="/joo/user/myQuseries">문의 내역</a></li>
+                                            href="/joo/question/myQuestionsList">문의 내역</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a
                                             class="dropdown-item"
@@ -69,6 +77,8 @@
                                         
                                     </ul>
                                     </li>
+                                 </sec:authorize>
+                                
                                 <!-- 최근본 상품은 모달로 처리 -->
                                 <li class="nav-item"><a class="nav-link" href="">최근본상품</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/joo/question/questionQnaList">문의하기</a></li>

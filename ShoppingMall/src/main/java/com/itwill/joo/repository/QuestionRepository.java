@@ -11,11 +11,19 @@ import com.itwill.joo.domain.Question;
 public interface QuestionRepository {
 
   // 상품문의
+    
+  // 문의 작성 
   int insert(Question question);
+  
   List<Question> selectOrderByDesc();
+  
+  // 상세 문의 조회
   Question selectById(long id);
   int updateTitleAndContent(Question question);
   int deleteById(long id);
+  
+  // 유저 번호를 통한 문의 조회
+  List<Question> selectByUserId(long u_id);
   
   // QnA
   List<Question> selectWhereTypeProduct(long p_id);

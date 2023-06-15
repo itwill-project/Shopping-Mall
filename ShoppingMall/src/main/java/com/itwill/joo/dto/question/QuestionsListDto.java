@@ -19,7 +19,7 @@ import lombok.ToString;
 public class QuestionsListDto {
 
     private long id;
-    private int is_answered;
+    private String is_answered;
     private String qtitle;
     private String qcontent;
     

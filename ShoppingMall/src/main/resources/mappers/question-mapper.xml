@@ -7,18 +7,18 @@
 
     <insert id="insert">
         insert into QUESTIONS (U_ID, P_ID, QTITLE, QCONTENT, QTYPE, QCREATED_TIME,
-        QMODIFIED_TIME, IS_ANSWERED)
+        QMODIFIED_TIME)
         values (#{u_id}, #{p_id}, #{qtitle}, #{qcontent}, #{qtype}, systimestamp,
-        systimestamp, 0)
+        systimestamp)
     </insert>
 
     <select id="selectWhereTypeProduct" resultType="com.itwill.joo.domain.Question">
         SELECT *
-FROM QUESTIONS A 
-JOIN PRODUCTS B 
-ON A.P_ID = B.ID
-WHERE A.QTYPE IN ('배송', '재입고', '기타 상품문의') AND A.P_ID = #{p_id}
-ORDER BY A.ID DESC
+        FROM QUESTIONS A 
+        JOIN PRODUCTS B 
+        ON A.P_ID = B.ID
+        WHERE A.QTYPE IN ('배송', '재입고', '기타 상품문의') AND A.P_ID = #{p_id}
+        ORDER BY A.ID DESC
     </select>
     
     <select id="selectWhereTypeQnA" resultType="com.itwill.joo.domain.Question">
@@ -31,6 +31,15 @@ ORDER BY A.ID DESC
 
     <select id="selectById" resultType="com.itwill.joo.domain.Question">
         select * from QUESTIONS where ID = #{id}
+    </select>
+    
+    <!--유저 아이디를 통해 조회 -->
+    <select id="selectByUserId" resultType="com.itwill.joo.domain.Question">
+       select q.* 
+       from QUESTIONS Q 
+       JOIN USERS U 
+       ON q.u_id = u.id
+       where q.u_id = #{u_id}
     </select>
     
     <update id = "updateTitleAndContent">

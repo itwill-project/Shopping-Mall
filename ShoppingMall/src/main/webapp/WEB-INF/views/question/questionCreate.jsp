@@ -83,11 +83,11 @@
                                 type="text" id="login_id" name="login_id" value="${login_id }" required readonly />
                         </div> 
                          
-                    </div>
-                    <div class="card-footer my-2">
+                    
+                        <div class="card-footer my-2">
                         <input class="form-control btn btn-outline-primary"
                             type="submit" value="문의 작성" />
-                    </div>
+                    </div> 
                 </form>
             </div>
         </main>

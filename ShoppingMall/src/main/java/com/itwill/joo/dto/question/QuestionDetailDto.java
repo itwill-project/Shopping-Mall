@@ -18,7 +18,7 @@ public class QuestionDetailDto {
     private long id;
     private long u_id;
     private long p_id;
-    private int is_answered;
+    private String is_answered;
     private String qtitle;
     private String qcontent;
     private String qtype;

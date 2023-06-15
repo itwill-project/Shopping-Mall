@@ -31,12 +31,29 @@ public class QuestionService {
     
     // 상품 Service
     
+    // 개인 문의 조회
+   public List<QuestionsListDto> readAllByUserId(long u_id) {
+       log.info("realAllByUserId()");
+       
+       List<Question> list = questionRepository.selectByUserId(u_id);
+       List<QuestionsListDto> questions = new ArrayList<>();
+       for(Question q : list) {
+           Product product = productRepository.selectProductById(q.getP_id());
+           QuestionsListDto dto = QuestionsListDto.fromEntity(q);
+           dto.setProduct(product);
+           questions.add(dto);
+       }
+       
+       return questions;
+   }
+    
+    
     // 상품 문의 목록
     public List<QuestionsListDto> readProductId(long p_id) {
         log.info("read()");
         
         
-        
+        // p_id를 아규먼트로 받아야한다!!!!!!!!
         List<Question> list = questionRepository.selectWhereTypeProduct(p_id);
         
         List<QuestionsListDto> questions = new ArrayList<>();
@@ -66,6 +83,15 @@ public class QuestionService {
         Question entity = questionRepository.selectById(id);
         
         return QuestionDetailDto.fromEntity(entity);
+    }
+    
+    // 상품 문의 전체보기
+    public List<QuestionsListDto> readAll() {
+        log.info("readAll() ");
+        
+        List<Question> list = questionRepository.selectOrderByDesc();
+        
+        return list.stream().map(QuestionsListDto::fromEntity).toList();
     }
     
     // 상품 문의 작성

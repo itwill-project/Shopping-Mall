@@ -31,7 +31,7 @@
 		<security:intercept-url pattern="/user/findPassword" access="isAnonymous()" />
 		<security:intercept-url pattern="/kakao/**" access="isAnonymous()" />
 		<security:intercept-url pattern="/validate/**" access="permitAll" />		
-		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<!-- <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" /> -->
 		<security:intercept-url pattern="/questions/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
 		

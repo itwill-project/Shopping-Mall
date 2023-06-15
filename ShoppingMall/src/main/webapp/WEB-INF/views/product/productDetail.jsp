@@ -2,6 +2,7 @@
 pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix= "fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -197,7 +198,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                                 <c:url var="QuestionDetailPage" value="/question/questionDetail" >
                                         <c:param name="pid" value="${ question.id }" />
                                 </c:url>
-                                <a href="${ QuestionDetailPage }">${question.qtitle}</a>
+                                <a href="${ QuestionDetailPage }"> ${question.qtitle}</a>
                            </td>
                             <td>${question.qcontent}</td>
                             <td>${question.login_id}</td>
@@ -218,25 +219,40 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                     </nav>
                 </div>
                 <div class="text-end">
-                
-                <a href="/joo/question/questionCreate?pid=${productId }">write</a>
-                
-<!--                     <button
-                        onclick="window.location.href='/joo/question/questionCreate'"
-                        type="button" class="btn btn-primary"
-                        id="QuestionsCreateBtn">작성하기</button> -->
-                </div>
+               
+<script> 
+    function questionCreate() {
+    var principal = '<%= request.getUserPrincipal() %>';
+    if (!principal || principal === 'null') {
+        var con = confirm("로그인을 하셔야 문의를 남길 수 있습니다");
+           if(con) {
+    	   location.href="/joo/user/login"
+       }
+    } else { 
+        location.href = "/joo/question/questionCreate?pid=${productId}";
+    }
+}
+</script>
+
+
+<div>
+    <button type="button" id="QuestionCreateBtn" class="btn btn-sm btn-outline-secondary" onclick="questionCreate();">문의 작성</button>
+</div>
+
+<!-- <a href="/joo/question/questionCreate?pid=${productId}">문의작성</a> -->
+
+       
 
                 <style>
 #QuestionsList {
     color: white;
 }
 
-#QuestionsCreateBtn {
+#QuestionCreateBtn {
     background-color: black;
     color: white;
 }
-</style>
+                </style>
             </div>
         </main>
 

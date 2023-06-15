@@ -112,6 +112,38 @@ public class QuestionController {
         return "redirect:/question/questionDetail?id=" + dto.getId();
     }
     
+    
+    
+    
+    @GetMapping("/myQuestionsList")
+    public String myQuestionList( Principal principal, Model model) {
+        String loginId = principal.getName();
+        long u_id = userService.getUserInfo(loginId).getId();
+        
+        log.info("GET: MyQuestionsList()", u_id);
+
+        // 컨트롤러는 서비스 계층의 메서드를 호출한 후 서비스 기능을 수행
+        List<QuestionsListDto> list = questionService.readAllByUserId(u_id);
+        
+        // 뷰에 보여줄 데이터를 모델에 저장
+        // 모델에 설정해준 myQusestionsList 이름을 jsp 에서 불러올때 똑같이 해줘야함
+        model.addAttribute("myQusestionsList", list);
+
+        
+        log.info("myQuestionsList: {}", list);
+        
+        return "question/questionsMyList";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // 아래부터는 QNA 컨트롤러
     
     // QNA 목록
