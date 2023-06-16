@@ -12,6 +12,7 @@
         systimestamp)
     </insert>
 
+    <!-- 상품 문의 조회 -->
     <select id="selectWhereTypeProduct" resultType="com.itwill.joo.domain.Question">
         SELECT *
         FROM QUESTIONS A 
@@ -21,14 +22,20 @@
         ORDER BY A.ID DESC
     </select>
     
+    <!-- 고객 문의 조회 -->
     <select id="selectWhereTypeQnA" resultType="com.itwill.joo.domain.Question">
-        select * from QUESTIONS where QTYPE IN ('취소관련', '주문관련', '회원정보', '서비스', '기타') order by ID desc
+        select * 
+        from QUESTIONS 
+        where QTYPE IN ('취소관련', '주문관련', '회원정보', '서비스', '기타') 
+        order by ID desc
     </select>
 
+    <!--상품문의 전체 조회 -->
     <select id="selectOrderByDesc" resultType="com.itwill.joo.domain.Question">
         select * from QUESTIONS order by ID desc
     </select>
 
+    <!--문의 상세 보기 -->
     <select id="selectById" resultType="com.itwill.joo.domain.Question">
         select * from QUESTIONS where ID = #{id}
     </select>
@@ -40,6 +47,7 @@
        JOIN USERS U 
        ON q.u_id = u.id
        where q.u_id = #{u_id}
+       order by q.id desc
     </select>
     
     <update id = "updateTitleAndContent">

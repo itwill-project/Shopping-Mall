@@ -2,17 +2,20 @@ package com.itwill.joo.dto.question;
 
 import java.sql.Timestamp;
 
+import com.itwill.joo.domain.Product;
 import com.itwill.joo.domain.Question;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @AllArgsConstructor
 @Builder
 @Getter
 @ToString
+@Setter
 public class QuestionDetailDto {
 
     private long id;
@@ -21,6 +24,10 @@ public class QuestionDetailDto {
     private String is_answered;
     private String qtitle;
     private String qcontent;
+    
+    private String login_id;
+    private Product product;
+    
     private String qtype;
     private Timestamp qcreated_time;
     private Timestamp qmodified_time;

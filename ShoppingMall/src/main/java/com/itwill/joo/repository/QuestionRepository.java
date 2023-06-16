@@ -19,6 +19,8 @@ public interface QuestionRepository {
   
   // 상세 문의 조회
   Question selectById(long id);
+  //List<Question> selectById(long id);
+  
   int updateTitleAndContent(Question question);
   int deleteById(long id);
   

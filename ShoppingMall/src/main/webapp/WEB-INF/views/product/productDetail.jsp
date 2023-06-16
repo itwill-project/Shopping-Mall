@@ -195,7 +195,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                             <td>${question.id}</td>
                             <td>${question.is_answered}</td>
                             <td>
-                                <c:url var="QuestionDetailPage" value="/question/questionDetail" >
+                               <c:url var="QuestionDetailPage" value="/question/questionDetail" >
                                         <c:param name="pid" value="${ question.id }" />
                                 </c:url>
                                 <a href="${ QuestionDetailPage }"> ${question.qtitle}</a>
@@ -214,7 +214,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                 <div class="text-center">
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
-                            <!-- TODO : 페이지 번호 생성  JavaScript 코드 삽입 -->
+                        <!-- TODO : 페이지 번호 생성  JavaScript 코드 삽입  --> 
                         </ul>
                     </nav>
                 </div>
@@ -226,7 +226,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
     if (!principal || principal === 'null') {
         var con = confirm("로그인을 하셔야 문의를 남길 수 있습니다");
            if(con) {
-    	   location.href="/joo/user/login"
+           location.href="/joo/user/login"
        }
     } else { 
         location.href = "/joo/question/questionCreate?pid=${productId}";

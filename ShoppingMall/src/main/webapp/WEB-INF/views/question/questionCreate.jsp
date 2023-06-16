@@ -70,7 +70,7 @@
                         <div class="my-2">
                             <label class="form-label" for="questionTitle">문의 제목</label> 
                             <input class="form-control"
-                                type="text" id="questionTitle" name="qtitle" required autofocus />
+                                type="text" id="questionTitle" name="qtitle" value="${ product.pname } " required readonly  />
                         </div>
                         <div class="my-2">
                             <label class="form-label" for="questionContent">문의 내용</label>

@@ -1,5 +1,6 @@
 package com.itwill.joo.service;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,18 +72,25 @@ public class QuestionService {
             questions.add(dto);
             
         }
-        
 //        return list.stream().map(QuestionsListDto::fromEntity).toList();
         return questions;
     }
     
+
     // 상품 문의 상세보기
     public QuestionDetailDto read(long id) {
         log.info("read(id)");
         
         Question entity = questionRepository.selectById(id);
+        QuestionDetailDto dto = QuestionDetailDto.fromEntity(entity);
         
-        return QuestionDetailDto.fromEntity(entity);
+        User user = userRepository.selectUserById(dto.getU_id());
+        dto.setLogin_id(user.getLogin_id());
+        
+        Product product = productRepository.selectProductById(entity.getP_id());
+        dto.setProduct(product);
+        
+        return dto;
     }
     
     // 상품 문의 전체보기
@@ -125,17 +133,36 @@ public class QuestionService {
         log.info("read()");
     
         List<Question> list = questionRepository.selectWhereTypeQnA();
+        List<QuestionsListDto> questions = new ArrayList<>();
         
-        return list.stream().map(QuestionsListDto::fromEntity).toList();
-    }
+        for(Question q : list) {
+            long userId = q.getU_id();
+            User user = userRepository.selectUserById(userId);
+            String login_id =   user. getLogin_id();
+        
+            QuestionsListDto dto = QuestionsListDto.fromEntity(q);
+            dto.setLogin_id(login_id);
+            questions.add(dto);
+            
+        }
+        return questions;
+    }   
     
-    //  고객 문의 상세보기
+     //고객 문의 상세보기
     public QuestionDetailDto readQna(long id) {
-        log.info("read(id)");
+         log.info("read(id)");
         
         Question entity = questionRepository.selectById(id);
+        QuestionDetailDto dto = QuestionDetailDto.fromEntity(entity);
         
-        return QuestionDetailDto.fromEntity(entity);
+        User user = userRepository.selectUserById(dto.getU_id());
+        dto.setLogin_id(user.getLogin_id());
+        
+        Product product = productRepository.selectProductById(entity.getP_id());
+        dto.setProduct(product);
+        
+        
+        return dto;
     }
   
     

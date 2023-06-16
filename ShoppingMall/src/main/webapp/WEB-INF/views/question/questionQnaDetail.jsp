@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>     
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,14 +37,14 @@
         <main class="my-2">
             <div class="card">
                 <form class="card-body">
-                    <div class="my-2">
+                  <%--   <div class="my-2">
                         <label class="form-label" for="id">번호</label>
                         <input class="form-control" id="id" value="${question.id }" readonly />
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="p_id">상품번호</label>
                         <input class="form-control" id="p_id" value="${question.p_id }" readonly />
-                    </div>
+                    </div> --%>
                     <div class="my-2">
                         <label class="form-label" for="qtype">문의 유형</label>
                         <input class="form-control" id="qtype" value="${ question.qtype }" readonly />
@@ -56,10 +57,10 @@
                         <label class="form-label" for="qcontent">문의 내용</label>
                         <textarea class="form-control" id="qcontent" readonly >${ question.qcontent }</textarea>
                     </div>
-                    <div class="my-2">
-                        <label class="form-label" for="u_id">작성자 아이디</label>
-                        <input class="form-control" id="u_id" value="${ question.u_id }" readonly />
-                    </div>
+                    <%-- <div class="my-2">
+                        <label class="form-label" for="login_id">작성자 아이디</label>
+                        <input class="form-control" id="login_id" value="${ login_id }" readonly />
+                    </div> --%>
                     <div class="my-2">
                         <label class="form-label" for="qcreated_time">작성시간</label>
                         <fmt:formatDate value="${ question.qcreated_time }"
@@ -76,10 +77,15 @@
                 
                 <div class="card-footer">
                     <c:url var="questionQnaModifyPage" value="/question/questionQnaModify">
-                        <c:param name="id" value="${ question.id }"></c:param>
+                        <c:param name="qnid" value="${ question.id }"></c:param>
                     </c:url>
-                    <a class="btn btn-outline-primary form-control"
-                        href="${ questionQnaModifyPage }" >수정하기</a>
+                    
+                   <sec:authentication property="principal" var="pinfo" />
+                   <sec:authorize access="isAuthenticated()" >
+                   <c:if test="${ loginId eq question.login_id }">
+                    <a class="btn btn-outline-primary form-control" href="${ questionQnaModifyPage }" >수정하기</a>
+                   </c:if>
+                   </sec:authorize>     
                 </div>
             </div>
         </main>

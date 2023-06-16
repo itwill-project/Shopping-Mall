@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     btnDelete.addEventListener('click', () => {
        const check = confirm('문의 내용이 있습니다. 정말 삭제할까요?')
             if(check) {
-                modifyForm.action ='./questionQnaDelete'; // 폼 요청 주소
+                modifyForm.action ='/joo/question/questionQnaDelete'; // 폼 요청 주소
                 modifyForm.method ='post'; // 폼 요청 방식
                 modifyForm.submit(); // 폼 제출 -> 요청을 서버로 보냄
             }

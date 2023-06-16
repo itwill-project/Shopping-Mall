@@ -44,11 +44,10 @@
                   
                     <tr>
                         <th>번호</th>
-                        <th>문의 유형</th>
                         <th>답변여부</th>
+                        <th>문의 유형</th>
                         <th>제목</th>
-                        <th>내용</th>
-                        <th>작성자 번호</th>
+                        <th>작성자 아이디</th>
                         <th>작성시간</th>
                     </tr>
                
@@ -58,16 +57,16 @@
                     <c:forEach items="${questionQnaList }" var="question">
                         <tr>
                             <td>${ question.id }</td>
-                            <td>${ question.qtype }</td>
                             <td>${ question.is_answered }</td>
+                            <td>${ question.qtype }</td>
                             <td> 
                                 <c:url var ="QuestionDetailPage" value="/question/questionQnaDetail">
                                     <c:param name="id" value="${ question.id }" />
                                 </c:url>
                                 <a href="${ QuestionDetailPage }">${ question.qtitle }</a>
                             </td>
-                            <td>${ question.qcontent }</td>
-                            <td>${ question.u_id }</td>
+                            
+                            <td>${ question.login_id }</td>
                             <td>
                                     <fmt:formatDate
                                         value="${ question.qcreated_time }"

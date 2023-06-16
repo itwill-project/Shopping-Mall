@@ -28,7 +28,7 @@
                 </li>
                 <li class="nav-item">
                     <c:url var="questionQnaListPage" value="/question/questionQnaList"/>
-                    <a class="nav-link" href="${ questionQnaListPage }">문의 목록</a>
+                    <a class="nav-link" href="${ questionQnaListPage }">고객문의 목록</a>
                 </li>
                 <li class="nav-itme">
                     <c:url var="questionQnaDetailPage" value="/question/questionQnaDetail">
@@ -42,13 +42,13 @@
         <main class="my-2">
             <div class="card">
                 <form class="card-body" id="modifyForm">
-                    <div class="my-2">
-                        <label class="form-label" for="id">번호</label>
-                        <input class="form-control" id="id" name="id" value="${question.id }" readonly />
+                   <div class="my-2">
+                        <label class="form-label" for="id"></label>
+                        <input type="hidden" class="form-control" id="qnid" name="qnid" value="${question.id }" readonly />
                     </div>
                     <div class="my-2">
-                        <label class="form-label" for="p_id">상품번호</label>
-                        <input class="form-control" id="p_id" name="p_id" value="${question.p_id }" readonly />
+                        <label class="form-label" for="p_id"></label>
+                        <input type="hidden" class="form-control" id="p_id" name="p_id" value="${question.p_id }" readonly />
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="qtype">문의 유형</label>
@@ -63,8 +63,8 @@
                         <textarea class="form-control" id="qcontent" name="qcontent"  >${ question.qcontent }</textarea>
                     </div>
                     <div class="my-2">
-                        <label class="form-label" for="u_id">작성자 아이디</label>
-                        <input class="form-control" id="u_id" name="u_id" value="${ question.u_id }" readonly />
+                        <label class="form-label" for="login_id">작성자 아이디</label>
+                        <input class="form-control" id="login_id" name="login_id" value="${ login_id }" readonly />
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="qcreated_time">작성시간</label>
@@ -80,12 +80,16 @@
                     </div>
                 </form>
                 
+                <c:if test ="${ question.login_id eq login_id }">
                 <div class="card-footer">
                     <div class="d-flex justify-content-start">
-                        <button class="mx-1 btn btn-outline-danger" id="btnDelete">삭제</button>
-                        <button class="mx-1 btn btn-outline-success" id="btnUpdate">업데이트</button>
+                        <button type="button" class="mx-1 btn btn-outline-danger" id="btnDelete">삭제</button>
+                        <c:if test ="${ question.is_answered == null }">
+                        <button class="mx-1 btn btn-outline-success" id="btnUpdate">수정완료</button>
+                        </c:if>
                     </div>
                 </div>
+                </c:if>
             </div>
          </main>
         

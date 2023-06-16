@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <!DOCTYPE html>
@@ -40,16 +41,11 @@
                 <form method="post">
                 
                     <div class="card-body">
-                        <div>
-                            <label class="form-label" for="userId">사용자 번호</label>
-                           <input class="form-control"
-                                type="text" id="userId" name="u_id" required />
-                        </div>
                         <div class="my-2">
-                            <label class="form-label" for="productId">상품 번호</label>
-                            <input class="forn-control"
-                                type="text" id="productId" name="p_id" required />
-                        </div>
+                        
+                            <input class="form-control" 
+                                type="hidden" id="userId" name="u_id" value="${userid }" required readonly />
+                        </div> 
                         <div class="my-2">
                             <label class="form-label" for="questionType">문의 유형</label>
                             <select class="form-select" id="questionType" name="qtype"  >
@@ -72,9 +68,9 @@
                                 id="questionContent" name="qcontent" rows="5" required></textarea>
                         </div>
                         <div class="my-2">
-                            <label class="form-label" for="author">작성자 아이디(받아와야해)</label>
+                            <label class="form-label" for="login_id">작성자 아이디</label>
                             <input class="form-control" 
-                                type="text" id="author" name="author" required />
+                                type="text" id="login_id" name="login_id" value=" ${ login_id }" required readonly />
                         </div> 
                     </div>
                     <div class="card-footer my-2">

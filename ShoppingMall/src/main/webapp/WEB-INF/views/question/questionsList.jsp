@@ -44,7 +44,6 @@
                         <th>문의 유형</th>
                         <th>답변여부</th>
                         <th>제목</th>
-                        <th>내용</th>
                         <th>작성자 아이디</th>
                         <th>작성시간</th>
                         <th>제품 이름</th>
@@ -64,7 +63,6 @@
                                 </c:url>
                                 <a href="${ QuestionDetailPage }">${ question.qtitle }</a>
                             </td>
-                            <td>${ question.qcontent }</td>
                             <td>
                             ${ question.login_id}
                             </td>

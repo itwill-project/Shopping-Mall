@@ -34,15 +34,18 @@ public class QuestionController {
 
     //상품 디테일 페이지에서 해당 상품의 문의사항을 확인
     @GetMapping("/questionDetail")
-    public void questionDetail(@RequestParam("pid") long pid, Model model) {
+    public void questionDetail(@RequestParam("pid") long pid, Principal principal, Model model) {
         log.info("detail(id={})", pid);
         
         QuestionDetailDto dto = questionService.read(pid);
+        long userId = userService.select(principal.getName()).getId();
         
         model.addAttribute("question", dto);
-        
+        model.addAttribute("userid", userId);
+        model.addAttribute("loginId", principal.getName());
         
     }
+
     
     @GetMapping("/questionsList")
     public void list( Model model, long p_id) {
@@ -82,34 +85,40 @@ public class QuestionController {
         return "redirect:/question/questionsList?p_id=" + dto.getP_id();
     }
     
-    // GET매핑으로 수정하
+     //GET매핑으로 수정하기
     @GetMapping("/questionModify")
-    public void modify(long id, Model model) {
-        log.info("questionModify(id={}", id);
+    public void modify(long qid, Model model, Principal principal) {
+        log.info("questionModify(qid={}", qid);
         
-        QuestionDetailDto dto = questionService.read(id);
+        long userId = userService.select(principal.getName()).getId();
+        
+        QuestionDetailDto dto = questionService.read(qid);
         model.addAttribute("question", dto);
+        model.addAttribute("userid", userId);
+        model.addAttribute("login_id", principal.getName());
     }
+
+
     
     @PostMapping("/questionDelete")
-    public String delete( long id) {
-        log.info("questionDelete(id={}", id);
+    public String delete( long qid, Long p_id) {
+        log.info("questionDelete(id={}", qid);
         
-        int result =questionService.delete(id);
+        int result =questionService.delete(qid);
         log.info("문의 삭제 결과={}", result);
         
-        return "redirect:/question/questionsList";
+        return "redirect:/question/questionsList?p_id=" + p_id;
        
     }
     
     @PostMapping("/questionUpdate")
-    public String update(QuestionUpdateDto dto) {
+    public String update(QuestionUpdateDto dto, Long p_id) {
         log.info("questionUpdate(dto={}", dto);
         
         int result = questionService.update(dto);
         log.info("업데이트 결과={}", result);
         
-        return "redirect:/question/questionDetail?id=" + dto.getId();
+        return "redirect:/question/questionsList?p_id=" + p_id;
     }
     
     
@@ -127,7 +136,7 @@ public class QuestionController {
         
         // 뷰에 보여줄 데이터를 모델에 저장
         // 모델에 설정해준 myQusestionsList 이름을 jsp 에서 불러올때 똑같이 해줘야함
-        model.addAttribute("myQusestionsList", list);
+        model.addAttribute("myQuestionsList", list);
 
         
         log.info("myQuestionsList: {}", list);
@@ -135,7 +144,12 @@ public class QuestionController {
         return "question/questionsMyList";
     }
     
-    
+    @GetMapping("/questionFaqList")
+    public String questionFaqList(Model model) {
+        log.info("GET: questionFaqList");
+        
+        return "question/questionFaqList";
+    }
     
     
     
@@ -152,18 +166,21 @@ public class QuestionController {
         log.info("questionQnaList()");
         
         List<QuestionsListDto> list = questionService.readQna();
-        
+
         model.addAttribute("questionQnaList",list);
     }
     
     // QNA 상세보기 
     @GetMapping("/questionQnaDetail")
-    public void questionQnaDetail(@RequestParam("id") long id, Model model) {
+    public void questionQnaDetail(@RequestParam("id") long id, Model model, Principal principal) {
         log.info("detail(id={})", id);
         
         QuestionDetailDto dto = questionService.readQna(id);
+        long userId = userService.select(principal.getName()).getId();
         
         model.addAttribute("question", dto);
+        model.addAttribute("userid", userId);
+        model.addAttribute("loginId", principal.getName());
         
         
     }
@@ -175,12 +192,13 @@ public class QuestionController {
         log.info("GET: quesitonCreate()");
         
         long userId = userService.select(principal.getName()).getId();
-        model.addAttribute("userId", userId);
+        model.addAttribute("userid", userId);
+        model.addAttribute("login_id", principal.getName());
     }
     
   
     
-    // craete Post 작성 보내기
+    // create Post 작성 보내기
     @PostMapping("/questionQnaCreate")
     public String createQna(QuestionCreateDto dto) {
         log.info("POST: create({})", dto);
@@ -191,20 +209,24 @@ public class QuestionController {
         return "redirect:/question/questionQnaList";
     }
     
-    // QNA GET매핑으로 수정하기
+//    // QNA GET매핑으로 수정하기
     @GetMapping("/questionQnaModify")
-    public void modifyQna(long id, Model model) {
-        log.info("questionModify(id={}", id);
+    public void modifyQna(long qnid, Model model, Principal principal) {
+        log.info("questionModify(qnid={}", qnid);
         
-        QuestionDetailDto dto = questionService.readQna(id);
+        long userId = userService.select(principal.getName()).getId();
+        QuestionDetailDto dto = questionService.readQna(qnid);
+        
         model.addAttribute("question", dto);
+        model.addAttribute("userid", userId);
+        model.addAttribute("login_id", principal.getName());
     }
     
     @PostMapping("/questionQnaDelete")
-    public String deleteQna( long id) {
-        log.info("questionDelete(id={}", id);
+    public String deleteQna( long qnid) {
+        log.info("questionDelete(id={}", qnid);
         
-        int result =questionService.deleteQna(id);
+        int result =questionService.deleteQna(qnid);
         log.info("문의 삭제 결과={}", result);
         
         return "redirect:/question/questionQnaList";
@@ -218,7 +240,7 @@ public class QuestionController {
         int result = questionService.updateQna(dto);
         log.info("업데이트 결과={}", result);
         
-        return "redirect:/question/questionQnaDetail?id=" + dto.getId();
+        return "redirect:/question/questionQnaList";
     }
     
 
