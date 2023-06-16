@@ -11,6 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+/**
+ * Order 클래스 작성
+ * @author 김우현
+ *
+ */
 public class Order {
 	
 	private long id;

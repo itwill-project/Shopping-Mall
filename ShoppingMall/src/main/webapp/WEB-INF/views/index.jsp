@@ -8,19 +8,12 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Index Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
+    crossorigin="anonymous">
 </head>
-<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 부트스트랩 -->
-		<title>JOO</title>
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-			crossorigin="anonymous">
-	</head>
-	<body>
+<body>
 		<div>
             <header class="my-1 p-3 text-bg-dark">
             <div>
@@ -56,7 +49,6 @@
                                 <sec:authorize access="isAuthenticated()">
                                 	<li class="nav-item"><a
                                     	class="nav-link" href="/joo/user/logout">로그아웃</a></li>
-                                </sec:authorize>
 
                                 <li class="nav-item dropdown"><a
                                     class="nav-link dropdown-toggle"
@@ -67,7 +59,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a
                                             class="dropdown-item"
-                                            href="/joo/user/myPrivate">개인정보 수정</a></li>
+                                            href="/joo/user/myDetails">개인정보 수정</a></li>
                                         <li><a
                                             class="dropdown-item"
                                             href="/joo/user/myGrade">적립금 확인</a></li>
@@ -87,6 +79,7 @@
                                 <!-- 최근본 상품은 모달로 처리 -->
                                 <li class="nav-item"><a class="nav-link" href="">최근본상품</a></li>
                                 <li class="nav-item"><a class="nav-link" href="">문의하기</a></li>
+                                </sec:authorize>
                             </ul>
                             <!-- 검색 페이지 -->
                             <form class="d-flex" role="search" action="/joo/product/productsList">

@@ -19,9 +19,9 @@ import lombok.NoArgsConstructor;
 public class RecentlyViewedProduct {
 	
 	private long id;
-	private long productId; // 최근 본 상품 아이디
-	private long userId; // 사용자 아이디
+	private long p_id; // 최근 본 상품 아이디
+	private long u_id; // 사용자 아이디
 	
-	private LocalDateTime createdTime; // 상품 본 시간
+	private LocalDateTime created_time; // 상품 본 시간
 
 }

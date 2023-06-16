@@ -16,7 +16,7 @@
     </select>
     
     <select id="findLoginIdByEmailAndName" resultType="String">
-    	select nvl(LOGIN_ID, 0)
+    	select LOGIN_ID
     	from USERS
     	where UEMAIL = #{email} and UNAME = #{name}
     </select>
@@ -31,10 +31,21 @@
     	values(#{login_id}, #{uemail}, #{uphone}, #{uname}, #{ustreet}, #{udetail_address}, #{upostcode}, #{role}, systimestamp, systimestamp)
     </insert>
     
+    <update id="updateUser">
+    	update USERS
+    	set UNAME = #{uname}, UPHONE = #{uphone}, USTREET = #{ustreet}, UDETAIL_ADDRESS = #{udetail_address}, UPOSTCODE = #{upostcode}, UPASSWORD = #{upassword}, MODIFIED_TIME = systimestamp
+    	where LOGIN_ID = #{login_id}
+    </update>
+    
     <update id="updatePassword">
     	update USERS
     	set UPASSWORD = #{password}, MODIFIED_TIME = systimestamp
-    	where ID = #{id}
+    	where LOGIN_ID = #{loginId}
     </update>
+    
+    <delete id="deleteUserById">
+    	delete from USERS
+    	where ID = #{id}
+    </delete>
     
 </mapper>

@@ -50,10 +50,14 @@
 					url: '/joo/user/findId',
 					data: {"name": name, "email": email},
 					success: function(res) {
-						if(res === '0') {
+						if(res.trim().length > 0) {
+							alert('아이디: ' + res);
+							window.location.href='/joo/user/login';
+						}
+						else {
 							alert('해당 정보로 가입된 사용자가 없습니다.');
-						} else {
-							alert(res);
+							$('#name').val('');
+							$('#email').val('');
 						}
 					}, error: function(error) {
 						console.log(error);

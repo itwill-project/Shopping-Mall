@@ -20,9 +20,9 @@ public class SelectedProduct {
 	
 	private long id;
 	
-	private long userId; // 사용자 아이디
-	private long productId; // 상품 아이디
+	private long u_id; // 사용자 아이디
+	private long p_id; // 상품 아이디
 	
-	private LocalDateTime createdTime; // 장바구니에 담긴 시간
+	private LocalDateTime created_time; // 장바구니에 담긴 시간
 
 }

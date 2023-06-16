@@ -19,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/validate")
 public class ValidateController {
 	
-	private final MailService mailService;
 	private final UserService userService;
 	
 	@GetMapping("/loginId")
@@ -48,11 +47,11 @@ public class ValidateController {
 		log.info("sendValidationCode({})", email);
 		
 		// 인증 코드 생성
-		String code = mailService.generateValidationNumber();
+		String code = MailService.generateValidationNumber();
 		log.info("code = {}", code);
 		
 		// 이메일 전송
-		MailService.sendEmail(email, code);
+		MailService.sendValidationCode(email, code);
 		
 		return code;
 	}

@@ -11,94 +11,119 @@
 		rel="stylesheet"
 		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
 		crossorigin="anonymous">
-	<style>
-		input[type=button] {
-			width: 120px;
-		}
-	</style>
 </head>
 <body>
-	<div style="width: 60%; margin: 0 auto;">
-		<h1>회원가입</h1>
-		<hr/>
-		<form id="join-form">
-		  <div class="row mb-3">
-		    <label for="loginId" class="col-sm-2 col-form-label">아이디</label>
-		    <div class="col-sm-8">
-		      <input type="text" class="form-control" id="loginId" name="loginId" autofocus>
-		    </div>
-		    <div class="col-sm-2 text-center">
-		    	<input type="button" id="id-validate-btn" class="btn btn-outline-primary" value="중복 확인">
-		    </div>
-		    <input type="hidden" id="is-id-validated" value="no" />
-		  </div>
-		  <div class="row mb-3">
-		    <label for="name" class="col-sm-2 col-form-label">이름</label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="name" name="name">
-		    </div>
-		  </div>
-		  <div class="row mb-3">
-		    <label for="phone" class="col-sm-2 col-form-label">전화번호</label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="phone" name="phone">
-		    </div>
-		  </div>
-		  <div class="row mb-3">
-		    <label for="email" class="col-sm-2 col-form-label">이메일</label>
-		    <div class="col-sm-8">
-		      <input type="email" class="form-control" id="email" name="email">
-		    </div>
-		    <div class="col-sm-2 text-center">
-		    	<input type="button" id="generate-num-btn" class="btn btn-outline-primary" value="인증번호 받기">
-		    </div>
-		  </div>
-		  <div class="row mb-3">
-		  	<input type="hidden" id="email-verification-code" value="" />
-		    <label for="emailConfirm" class="col-sm-2 col-form-label">이메일 인증</label>
-		    <div class="col-sm-8">
-		      <input type="text" class="form-control" id="emailConfirm"  />
-		    </div>
-		    <input type="hidden" id="is-email-validated" value="no" />
-		    <div class="col-sm-2 text-center">
-		    	<input type="button" id="num-check-btn" class="btn btn-outline-primary" value="인증번호 확인">
-		    </div>
-		  </div>
-		  <div class="row mb-3">
-		    <label for="password" class="col-sm-2 col-form-label">비밀번호</label>
-		    <div class="col-sm-10">
-		      <input type="password" class="form-control" id="password" name="password">
-		    </div>
-		  </div>
-		  <div class="row mb-3">
-		    <label for="passwordConfirm" class="col-sm-2 col-form-label">비밀번호 확인</label>
-		    <div class="col-sm-10">
-		      <input type="password" class="form-control" id="passwordConfirm">
-		    </div>
-		  </div>
-		  <span id="guide" style="color:#999;display:none"></span>
-		  <div class="row mb-3">
-		    <label for="postcode" class="col-sm-2 col-form-label">주소</label>
-		    <div class="col-sm-8">
-		      <input type="text" class="form-control" id="postcode" name="postcode">
-		    </div>
-		    <div class="col-sm-2 text-center">
-		    	<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn btn-outline-primary">
-		    </div>
-		  </div>
-		   <div class="row mb-3">
-		    <label for="street" class="col-sm-2 col-form-label"></label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="street" name="street">
-		    </div>
-		  </div>
-		  <div class="row mb-3">
-		    <label for="detailAddress" class="col-sm-2 col-form-label"></label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="detailAddress" name="detailAddress">
-		    </div>
-		  </div>
-		  
+	<div style="width: 50%; margin: 0 auto;">
+		<div id="title-area" style="margin: 0 auto; padding: 20px 5px;">
+			<h2 style="text-align: center;">회원가입</h2>
+			<hr />
+		</div>
+		<form id="join-form" >
+			<table class="table">
+				<tr>
+					<th class="table-secondary w-25">
+						<label for="loginId" class="form-label">아이디</label>
+					</th>
+					<td class="w-75">
+						<input type="text" class="form-control" id="loginId" name="loginId" autofocus>
+					</td>
+					<td>
+						<input type="button" id="id-validate-btn" class="btn btn-outline-primary w-100" value="중복 확인">
+		    			<input type="hidden" id="is-id-validated" value="no" />
+					</td>
+				</tr>
+				<tr>
+					<th class="table-secondary w-25">
+						<label for="name" class="form-label">이름</label>
+					</th>
+					<td class="w-75">
+						<input type="text" class="form-control" id="name" name="name">
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<th class="table-secondary w-25">
+						<label for="phone" class="form-label">전화번호</label>
+					</th>
+					<td class="w-75">
+						<input type="text" class="form-control" id="phone" name="phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<th class="table-secondary w-25">
+						<label for="email" class="form-label">이메일</label>
+					</th>
+					<td class="w-75">
+						<input type="email" class="form-control" id="email" name="email">
+					</td>
+					<td>
+						<input type="button" id="generate-num-btn" class="btn btn-outline-primary w-100" value="인증번호 받기">
+					</td>
+				</tr>
+				<tr>
+					<th class="table-secondary w-25">
+						<input type="hidden" id="email-verification-code" value="" />
+		    			<label for="emailConfirm" class="form-label">이메일 인증</label>
+					</th>
+					<td class="w-75">
+						<input type="text" class="form-control" id="emailConfirm" />
+					</td>
+					<td>
+						<input type="hidden" id="is-email-validated" value="no" />
+		    			<input type="button" id="num-check-btn" class="btn btn-outline-primary w-100" value="인증번호 확인">
+					</td>
+				</tr>
+				<tr>
+					<th class="table-secondary w-25">
+						<label for="password" class="form-label">비밀번호</label>
+					</th>
+					<td class="w-75">
+						<input type="password" class="form-control" id="password" name="password">
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<th class="table-secondary w-25">
+						<label for="passwordConfirm" class="form-label">비밀번호 확인</label>
+					</th>
+					<td class="w-75">
+						<input type="password" class="form-control" id="passwordConfirm">
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<th class="table-secondary w-25" rowspan="3">
+						<span id="guide" style="color:#999;display:none"></span>
+						<label for="postcode" class="form-label">주소</label>
+					</th>
+					<td class="w-75">
+						<input type="text" class="form-control" id="postcode" name="postcode">
+					</td>
+					<td>
+						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn btn-outline-primary w-100">
+					</td>
+				</tr>
+				<tr>
+					
+					<td class="w-75">
+						<input type="text" class="form-control" id="street" name="street">
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td class="w-75">
+						<input type="text" class="form-control" id="detailAddress" name="detailAddress">
+					</td>
+					<td>
+					</td>
+				</tr>
+			</table>
 		  <button type="submit" id="joinBtn" class="btn btn-outline-success">가입</button>
 		  <a href="/joo" class="btn btn-outline-danger">취소</a>
 		</form>	

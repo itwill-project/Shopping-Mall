@@ -25,7 +25,7 @@ public class MailService {
 	private static final String user = "shoppingmall0710@gmail.com";
 	private static final String password = "wwvfdgangtdjwtym";
 	
-	public static void sendEmail(String recipient, String code) {
+	private static Session getSession(String recipient, String code) {
 		Properties prop = new Properties();
 		prop.put("mail.smtp.auth", true);
         prop.put("mail.smtp.starttls.enable", "true");
@@ -40,7 +40,11 @@ public class MailService {
             }
         });
         
-        MimeMessage message = new MimeMessage(session);
+        return session;
+	}
+	
+	public static void sendValidationCode(String recipient, String code) {        
+        MimeMessage message = new MimeMessage(getSession(recipient, code));
         
         try {
         	message.setFrom(new InternetAddress(user));
@@ -58,8 +62,27 @@ public class MailService {
 		}
 	}
 	
+	public static void sendTemporaryPassword(String recipient, String code) {
+		MimeMessage message = new MimeMessage(getSession(recipient, code));
+        
+        try {
+        	message.setFrom(new InternetAddress(user));
+        	
+        	message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        	
+        	message.setSubject("임시 비밀번호");
+        	
+        	message.setText(code);
+			
+        	Transport.send(message);
+        	
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
 	
-	public String generateValidationNumber() {
+	
+	public static String generateValidationNumber() {
 		String code = "";
 		int N = charSet.length;
 		
@@ -69,6 +92,18 @@ public class MailService {
 		}
 		
 		return code;
+	}
+	
+	public static String generateTemporaryPassword() {
+		String password = "";
+		int N = charSet.length;
+		
+		for(int i = 0; i < 10; i++) {
+			int idx = (int) (Math.random() * N);
+			password += charSet[idx] + "";
+		}
+		
+		return password;
 	}
 
 }

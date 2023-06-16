@@ -16,6 +16,10 @@ public interface UserRepository {
 	
 	int createKakaoUser(User user);
 	
-	int updatePassword(String password, long id);
+	int updateUser(User user);
+	
+	int updatePassword(@Param("loginId") String loginId, @Param("password") String password);
+	
+	int deleteUserById(long id);
 
 }

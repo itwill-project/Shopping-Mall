@@ -141,7 +141,7 @@ public class KakaoService {
 	}
 	
 	private String generateKakaoUserId(String nickname, String email) {
-		return "kakao_" + nickname + "_" + email;
+		return "kakao_" + email;
 	}
 
 }

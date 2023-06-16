@@ -6,10 +6,13 @@ import org.springframework.stereotype.Service;
 import com.itwill.joo.domain.User;
 import com.itwill.joo.dto.user.UserCreateDto;
 import com.itwill.joo.dto.user.UserDetailDto;
+import com.itwill.joo.dto.user.UserUpdateDto;
 import com.itwill.joo.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -58,9 +61,31 @@ public class UserService {
 		String password = passwordEncoder.encode(dto.getPassword());
 		dto.setPassword(password);
 		dto.setRole("ROLE_USER");
-		User user = dto.toEntity();
 		
-		return userRepository.createUser(user);
+		return userRepository.createUser(dto.toEntity());
+	}
+	
+	public int updateUserInfo(UserUpdateDto dto, String loginId) {
+		log.info("updateUserInfo({})", dto);
+		
+		String password = passwordEncoder.encode(dto.getPassword());
+		dto.setPassword(password);
+		
+		User user = dto.toEntity();
+		user.setLogin_id(loginId);
+		
+		return userRepository.updateUser(user);
+	}
+	
+	public int updatePassword(String loginId, String password) {
+		password = passwordEncoder.encode(password);
+		return userRepository.updatePassword(loginId, password);
+	}
+	
+	public int deleteUser(long id) {
+		log.info("deleteUser({})", id);
+		
+		return userRepository.deleteUserById(id);
 	}
 
 }

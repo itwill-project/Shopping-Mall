@@ -14,7 +14,6 @@
 			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<!-- JSTL -->
 		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
@@ -26,7 +25,6 @@
 			<artifactId>javax.servlet.jsp.jstl</artifactId>
 			<version>1.2.5</version>
 		</dependency>
-
 		<!-- JUnit Test -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -40,7 +38,6 @@
 			<version>5.9.3</version>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- Log4j, Slf4j logging -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -62,7 +59,6 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.36</version>
 		</dependency>
-
 		<!-- DB 추가 설정 -->
 		<dependency>
 			<groupId>com.oracle.database.security</groupId>
@@ -79,7 +75,6 @@
 			<artifactId>oraclepki</artifactId>
 			<version>21.5.0.0</version>
 		</dependency>
-
 		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -87,7 +82,6 @@
 			<version>1.18.26</version>
 			<scope>compile</scope>
 		</dependency>
-
 		<!-- Spring Web MVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -104,7 +98,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.3.27</version>
 		</dependency>
-
 		<!-- Spring Test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -112,21 +105,18 @@
 			<version>5.3.27</version> <!-- 5.3.27 -->
 			<scope>test</scope>
 		</dependency>
-
 		<!-- Oracle JDBC -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc11</artifactId>
 			<version>23.2.0.0</version>
 		</dependency>
-
 		<!-- HikariCP : Connection Pool(Data Source) -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>5.0.1</version>
 		</dependency>
-
 		<!-- MyBatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -138,28 +128,37 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-
 		<!-- Spring-JDBC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>5.1.5.RELEASE</version>
 		</dependency>
-
 		<!-- Spring Transaction -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>5.1.5.RELEASE</version>
 		</dependency>
-
 		<!-- jackson-databind: REST 서비스에서 이용 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.15.1</version>
 		</dependency>
-
+		
+		<!-- 파일 업로드  -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+		
 		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -182,6 +181,11 @@
 			<version>5.1.5.RELEASE</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.2.5.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-oauth2-client</artifactId>
 			<version>5.1.5.RELEASE</version>
@@ -200,9 +204,20 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.6</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.iamport</groupId>
+			<artifactId>iamport-rest-client-java</artifactId>
+			<version>0.2.14</version>
+		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 	<build>
-		<testSourceDirectory>src/main/test</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Basket {
 	
 	private long id;
-	private long userId; // 사용자 아이디
-	private int estimatedPrice; // 현재 장바구니에 담긴 상품들 총 가격
+	private long u_id; // 사용자 아이디
+	private int estimated_price; // 현재 장바구니에 담긴 상품들 총 가격
 
 }

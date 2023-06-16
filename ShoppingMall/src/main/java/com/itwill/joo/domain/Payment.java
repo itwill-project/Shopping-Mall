@@ -19,10 +19,10 @@ import lombok.NoArgsConstructor;
 public class Payment {
 	
 	private long id;
-	private long orderId; // 주문 아이디
+	private long o_id; // 주문 아이디
 	
-	private String status; // 결제 상태
+	private String payment_status; // 결제 상태
 	
-	private LocalDateTime createdTime; // 결제 일자
+	private LocalDateTime pcreated_time; // 결제 일자
 
 }

@@ -14,19 +14,19 @@ import lombok.NoArgsConstructor;
 public class Board {
 	
 	private long id;
-	private long userId; // 게시물 작성자 아이디
+	private long u_id; // 게시물 작성자 아이디
 	
-	private String title; // 게시물 제목
-	private String content; // 게시물 내용
-	private String image1; // 이미지 배너
-	private String image2; // 이미지 내용
-	private String type; // 게시물 타입(카테고리)
+	private String btitle; // 게시물 제목
+	private String bcontent; // 게시물 내용
+	private String bimage1; // 이미지 배너
+	private String bimage2; // 이미지 내용
+	private String btype; // 게시물 타입(카테고리)
 	
-	private int viewed; // 게시물 조회수
+	private int bviewed; // 게시물 조회수
 	
-	private LocalDateTime createdTime; // 게시물 작성일자
-	private LocalDateTime modifeidTime; // 게시물 수정일자
-	private LocalDateTime startTime; // 이벤트 시작일자
-	private LocalDateTime endTime; // 이벤트 종료일자
+	private LocalDateTime bcreated_time; // 게시물 작성일자
+	private LocalDateTime bmodifeid_time; // 게시물 수정일자
+	private LocalDateTime bstart_time; // 이벤트 시작일자
+	private LocalDateTime bend_time; // 이벤트 종료일자
 
 }
