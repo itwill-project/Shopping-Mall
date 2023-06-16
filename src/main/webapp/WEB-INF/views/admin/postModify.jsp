@@ -108,76 +108,49 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
             </ul>
 
 		<main class="my-2">
-			<div>
-			<c:url value="https://www.imagetoday.co.kr/images2020/event/recom/01.jpg" var="im"> </c:url>
-				<img src="${im}" class="rounded mx-auto d-block" id="image" width="100%" height="500"></img>
-			</div>
-		
-			<section class="card">
-				<form class="card-body">
+			<section class="card" >
+				<form class="card-body" id="modiDelForm">
 					<div class="my-2">
 						<label class="form-label" for="id">번호</label> 
 						<input class="form-control" id="id" name="id" value="${ board.id }" readonly />
 					</div>
 					<div class="my-2">
 						<label class="form-label" for="btype">타입</label> 
-						<input class="form-control" id="btype" name="btype" value="${ board.btype }" readonly/>
+						<input class="form-control" id="btype" name="btype" value="${ board.btype }" />
 					</div>
 					<div class="my-2">
 						<label class="form-label" for="btitle">제목</label> 
-						<input class="form-control" id="btitle" value="${ board.btitle }" readonly/>
+						<input class="form-control" id="btitle" name="btitle" value="${ board.btitle }" />
 					</div>
 					<div class="my-2">
 						<label class="form-label" for="bcontent">내용</label>
-						<textarea class="form-control" id="bcontent" readonly>${ board.bcontent }</textarea>
+						<textarea class="form-control" id="bcontent" name="bcontent" >${ board.bcontent }</textarea>
 					</div>
-					<%-- <div class="my-2">
-						<label class="form-label" for="writer">작성자</label> <input
-							class="form-control" id="writer" value="${ board.writer }" readonly />
-					</div> --%>
-					<div class="my-2">
-						<label class="form-label" for="bcreated_time">등록 일자</label>
-						<fmt:formatDate value="${ board.bcreated_time }" 
-							pattern="yyyy-MM-dd HH:mm:ss" var="bcreated_time" />
-						<input class="form-control" id="bcreated_time" value="${ bcreated_time }" readonly />
-					</div>
-					<div class="my-2">
-						<label class="form-label" for="update_date">종료 일자</label>
-						<fmt:formatDate value="${ board.bmodified_time }" 
-							pattern="yyyy-MM-dd HH:mm:ss" var="bmodified_time" />
-						<input class="form-control" id="bmodified_time" value="${ bmodified_time }" readonly />
-					</div>
-					<%-- <div class="my-2">
-						<label class="form-label" for="image">이미지</label>
-						<c:url value="/static/assets/bannerImages/001.jpg" var="im"> </c:url>
-						<img src="${im}" class="rounded mx-auto d-block" id="image" width="100%" height="500" readonly></img>
-					</div> --%>
 				</form>
 				
 				<div class="card-footer">
-					<c:if test="${ loginId eq 'admin' }">
-	                    <c:url var="boardModifyPage" value="/joo/admin/postModify">
-	                        <c:param name="id" value="${ board.id }"></c:param>
-	                    </c:url>
-	                    <a class="btn btn-outline-primary form-control"
-	                        href="${ boardModifyPage }">수정하기</a>
-	                </c:if>
+                    <div class="d-flex justify-content-center">
+                        <button class="mx-1 btn btn-outline-danger" id="btnDelete">삭제</button>
+                        <button class="mx-1 btn btn-outline-success" id="btnUpdate">업데이트</button>
+                    </div>
                 </div>
-				
 			</section>
 
+		</main>
 		
 		<a href="/joo/post/postList" class="btn btn-primary">목록</a>
 
 		<footer class="my-1 p-3 text-bg-dark">
             <!-- 기업정보, 홈 인스타, 페이스북, 등등 필한거 -->
                 <h1 class="text-center">풋터</h1>
+            
                 <a href="">home</a>
             </footer>
          
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 			crossorigin="anonymous"></script>
+			<script src="../static/js/postPage/adminPage.js"></script>
 		</div>
 	</body>
 </html>

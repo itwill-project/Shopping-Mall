@@ -1,18 +1,21 @@
-package com.itwill.joo.domain;
+package com.itwill.joo.dto.board;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+
+import com.itwill.joo.domain.Board;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// VO에 해당, 클래스로 설정(변동되는 모델 값)
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Board {
+public class BoardListDto {
 	
 	private long id;
 	private long u_id; // 게시물 작성자 아이디
@@ -29,5 +32,33 @@ public class Board {
 	private Timestamp bmodified_time; // 게시물 수정일자
 	private Timestamp bstart_time; // 이벤트 시작일자
 	private Timestamp bend_time; // 이벤트 종료일자
-
+	
+	
+	public static BoardListDto fromEntity(Board entity) {
+		
+		return BoardListDto.builder()
+				.id(entity.getId())
+				.btitle(entity.getBtitle())
+				.bcontent(entity.getBcontent())
+				.btype(entity.getBtype())
+				.bcreated_time(entity.getBcreated_time())
+				.bmodified_time(entity.getBmodified_time())
+				.bend_time(entity.getBend_time())
+				.bviewed(entity.getBviewed())
+				.build();
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
