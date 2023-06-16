@@ -15,7 +15,7 @@
 	<!-- 스프링 컨텍스트 설정 정보들을 저장한 파일의 위치 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
+		<param-value>  
 			/WEB-INF/spring/application-context.xml
         	/WEB-INF/spring/security-context.xml
         </param-value>
