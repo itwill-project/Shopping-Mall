@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.itwill.joo.repository.ProductRepository">
+        
+        <!-- 상품보기(전체) -->
+        <select id="selectOrderByModifiedTime" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            order by pmodified_time
+        </select>
+        
+        <!-- 상품보기(신상) -->
+        <select id="selectOrderByCreatedTimeDesc" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            order by pcreated_time desc
+        </select>
+
+        <!-- 상품보기(인기) -->
+        <select id="selectOrderByPsodDesc" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            order by 
+            psold desc,
+            pcreated_time
+        </select>        
+        <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ[관리자] 상품관리ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+        <!-- 상품보기(관리자/한개보기) -->
+        <select id="selectById" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            where            
+            id = #{id}
+        </select>        
+        
+        <!-- 상품추가(관리자:상품관리)(이미지 추가없을 때) -->
+        <insert id="insertNewProductWithOutImage">
+            insert into products
+            (pname, pcategory, pprice, palc, pregion, pstock, pvolume, pdiscount)
+            values(#{pname}, #{pcategory}, #{pprice}, #{palc}, #{pregion}, #{pstock}, #{pvolume}, #{pdiscount})
+        </insert>
+        
+        <!-- 상품검색(관리자:상품관리) -->
+        <select id="selectBySearch" resultType="com.itwill.joo.domain.Product">
+            select *
+            from products
+            where 
+            pname like '%${search}%'
+            order by pcreated_time
+        </select>
+        
+        <!-- 상품수정(관리자:상품관리) -->
+        <update id="updateProductWithProduct">
+            update products
+            set pname =#{pname}, pprice =#{pprice}, pstock =#{pstock}, pdiscount =#{pdiscount}, pmodified_time= systimestamp
+            where id = #{id}
+        </update>
+        
+        <!-- 상품삭제(관리자:상품관리) -->
+        <delete id="deleteProductWithId">
+            DELETE FROM products
+            WHERE id = #{id}
+        </delete>
+        
+        <!-- 상품검색(관리자:상품관리) -->
+        <select id="selectThatNoPstock" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            FROM products
+            order by pstock
+        </select>
+        <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ[유저] 리스트보기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+        
+        <!-- 신상품 리스트 (유저 :상품리스트보기) -->
+        <select id="selectByNew" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            order by pcreated_time
+        </select>
+        
+        <!-- 인기 상품 리스트 (유저 :상품리스트보기) -->
+        <select id="selectByHot" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            order by psold desc
+        </select>
+        
+        <!-- 전통주 상품 리스트 (유저 :상품리스트보기) -->
+        <select id="selectByOld" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            where pcategory = '전통주'
+        </select>
+        
+        <!-- 소주 상품 리스트 (유저 :상품리스트보기) -->
+        <select id="selectBySoju" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            where pcategory = '소주'
+        </select>
+        
+        <!-- 맥주 상품 리스트 (유저 :상품리스트보기) -->
+        <select id="selectByBear" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            where pcategory = '맥주'
+        </select>
+        
+        <!-- 기타 상품 리스트 (유저 :상품리스트보기) -->
+        <select id="selectByAnother" resultType="com.itwill.joo.domain.Product">
+            select
+            *
+            from products
+            where pcategory = '기타'
+        </select>
+        
+        <!-- 검색 상품 리스트 (유저 :상품리스트보기) -->
+        <select id="selectByUserSearch" resultType="com.itwill.joo.domain.Product" parameterType="com.itwill.joo.dto.ProductSearchDto">
+            SELECT *
+            FROM products
+            WHERE pname like #{searchWord}
+                and (pregion = #{pregion1} or pregion = #{pregion2} or pregion = #{pregion3} or pregion = #{pregion4} or pregion = #{pregion5} or pregion = #{pregion6} or pregion = #{pregion7} or pregion = #{pregion8})
+                and (PCATEGORY = #{pcategory1} or PCATEGORY = #{pcategory2} or PCATEGORY = #{pcategory3} or PCATEGORY = #{pcategory4} or PCATEGORY = #{pcategory5})
+                and (palc BETWEEN #{palc_min} AND #{palc_max})
+        </select>
+
+    </mapper>

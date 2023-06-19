@@ -7,199 +7,251 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<dependencies>
-		<!-- Javax Servlet -->
+        <!--  -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.12.5</version>
+        </dependency>
+        <!-- Javax Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<artifactId>
+                javax.servlet-api</artifactId>
 			<version>4.0.1</version>
 			<scope>provided</scope>
-		</dependency>
+        </dependency>
 
-		<!-- JSTL -->
+        <!-- JSTL -->
 		<dependency>
-			<groupId>javax.servlet.jsp.jstl</groupId>
+			<groupId>
+                javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
-			<version>1.2.2</version>
-		</dependency>
+			<version>
+                1.2.2</version>
+        </dependency>
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
-			<artifactId>javax.servlet.jsp.jstl</artifactId>
+			<artifactId>
+                javax.servlet.jsp.jstl</artifactId>
 			<version>1.2.5</version>
-		</dependency>
+        </dependency>
 
-		<!-- JUnit Test -->
+        <!-- JUnit Test -->
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
+			<groupId>
+                org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.9.3</version>
+			<version>
+                5.9.3</version>
 			<scope>test</scope>
-		</dependency>
+        </dependency>
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
+			<groupId>
+                org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>5.9.3</version>
-			<scope>test</scope>
-		</dependency>
+			<scope>
+                test</scope>
+        </dependency>
 
-		<!-- Log4j, Slf4j logging -->
+        <!-- Log4j, Slf4j logging -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
+			<artifactId>
+                log4j-core</artifactId>
 			<version>2.20.0</version>
-		</dependency>
+        </dependency>
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
+			<groupId>
+                org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<version>2.20.0</version>
-		</dependency>
+        </dependency>
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
+			<groupId>
+                org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>2.20.0</version>
-		</dependency>
+			<version>
+                2.20.0</version>
+        </dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
+			<artifactId>
+                slf4j-api</artifactId>
 			<version>1.7.36</version>
-		</dependency>
+        </dependency>
 
-		<!-- DB 추가 설정 -->
+        <!-- DB 추가 설정 -->
 		<dependency>
-			<groupId>com.oracle.database.security</groupId>
+			<groupId>
+                com.oracle.database.security</groupId>
 			<artifactId>osdt_cert</artifactId>
-			<version>21.5.0.0</version>
-		</dependency>
+			<version>
+                21.5.0.0</version>
+        </dependency>
 		<dependency>
-			<groupId>com.oracle.database.security</groupId>
+			<groupId>
+                com.oracle.database.security</groupId>
 			<artifactId>osdt_core</artifactId>
-			<version>21.5.0.0</version>
-		</dependency>
+			<version>
+                21.5.0.0</version>
+        </dependency>
 		<dependency>
-			<groupId>com.oracle.database.security</groupId>
+			<groupId>
+                com.oracle.database.security</groupId>
 			<artifactId>oraclepki</artifactId>
-			<version>21.5.0.0</version>
-		</dependency>
+			<version>
+                21.5.0.0</version>
+        </dependency>
 
-		<!-- Lombok -->
+        <!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<artifactId>
+                lombok</artifactId>
 			<version>1.18.26</version>
 			<scope>compile</scope>
-		</dependency>
+        </dependency>
 
-		<!-- Spring Web MVC -->
+        <!-- Spring Web MVC -->
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>
+                org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>5.3.27</version>
-		</dependency>
+        </dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>
+                org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>5.3.27</version>
-		</dependency>
+        </dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>
+                org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.3.27</version>
-		</dependency>
+        </dependency>
 
-		<!-- Spring Test -->
+        <!-- Spring Test -->
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>
+                org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>5.3.27</version> <!-- 5.3.27 -->
-			<scope>test</scope>
-		</dependency>
+			<scope>
+                test</scope>
+        </dependency>
 
-		<!-- Oracle JDBC -->
+        <!-- Oracle JDBC -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc11</artifactId>
+			<artifactId>
+                ojdbc11</artifactId>
 			<version>23.2.0.0</version>
-		</dependency>
+        </dependency>
 
-		<!-- HikariCP : Connection Pool(Data Source) -->
+        <!-- HikariCP : Connection Pool(Data Source) -->
 		<dependency>
-			<groupId>com.zaxxer</groupId>
+			<groupId>
+                com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>5.0.1</version>
-		</dependency>
+        </dependency>
 
-		<!-- MyBatis -->
+        <!-- MyBatis -->
 		<dependency>
-			<groupId>org.mybatis</groupId>
+			<groupId>
+                org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.5.13</version>
-		</dependency>
+        </dependency>
 		<dependency>
-			<groupId>org.mybatis</groupId>
+			<groupId>
+                org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>3.0.1</version>
-		</dependency>
+        </dependency>
 
-		<!-- Spring-JDBC -->
+        <!-- Spring-JDBC -->
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>
+                org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>5.1.5.RELEASE</version>
-		</dependency>
+			<version>
+                5.1.5.RELEASE</version>
+        </dependency>
 
-		<!-- Spring Transaction -->
+        <!-- Spring Transaction -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
+			<artifactId>
+                spring-tx</artifactId>
 			<version>5.1.5.RELEASE</version>
-		</dependency>
+        </dependency>
 
-		<!-- jackson-databind: REST 서비스에서 이용 -->
+        <!-- jackson-databind: REST 서비스에서 이용 -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
+			<groupId>
+                com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.15.1</version>
-		</dependency>
+			<version>
+                2.15.1</version>
+        </dependency>
 
-		<!-- Spring Security -->
+        <!-- Spring Security -->
 		<dependency>
-			<groupId>org.springframework.security</groupId>
+			<groupId>
+                org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>5.1.5.RELEASE</version>
-		</dependency>
+			<version>
+                5.1.5.RELEASE</version>
+        </dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
+			<groupId>
+                org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>5.1.5.RELEASE</version>
-		</dependency>
+			<version>
+                5.1.5.RELEASE</version>
+        </dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
+			<groupId>
+                org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>5.1.5.RELEASE</version>
-		</dependency>
+			<version>
+                5.1.5.RELEASE</version>
+        </dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
+			<groupId>
+                org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>5.1.5.RELEASE</version>
-		</dependency>
+			<version>
+                5.1.5.RELEASE</version>
+        </dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-oauth2-client</artifactId>
+			<groupId>
+                org.springframework.security</groupId>
+			<artifactId>
+                spring-security-oauth2-client</artifactId>
 			<version>5.1.5.RELEASE</version>
-		</dependency>
+        </dependency>
 
-		<!-- SMTP 이메일 사용 -->
+        <!-- SMTP 이메일 사용 -->
 		<dependency>
-			<groupId>com.sun.mail</groupId>
+			<groupId>
+                com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
-		</dependency>
+        </dependency>
 
-		<!-- Google gson -->
+        <!-- Google gson -->
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
+			<groupId>
+                com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.6</version>
-		</dependency>
+        </dependency>
 	</dependencies>
 	<build>
 		<testSourceDirectory>src/main/test</testSourceDirectory>

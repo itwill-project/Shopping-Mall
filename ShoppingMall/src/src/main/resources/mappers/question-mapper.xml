@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwill.joo.repository.QuestionRepository">
+
+    <insert id="insert">
+        insert into QUESTIONS (U_ID, P_ID, QTITLE, QCONTENT, QTYPE, QCREATED_TIME,
+        QMODIFIED_TIME)
+        values (#{u_id}, #{p_id}, #{qtitle}, #{qcontent}, #{qtype}, systimestamp,
+        systimestamp)
+    </insert>
+
+    <select id="selectWhereTypeProduct" resultType="com.itwill.joo.domain.Question">
+        SELECT *
+        FROM QUESTIONS A 
+        JOIN PRODUCTS B 
+        ON A.P_ID = B.ID
+        WHERE A.QTYPE IN ('배송', '재입고', '기타 상품문의') AND A.P_ID = #{p_id}
+        ORDER BY A.ID DESC
+    </select>
+    
+    <select id="selectWhereTypeQnA" resultType="com.itwill.joo.domain.Question">
+        select * from QUESTIONS where QTYPE IN ('취소관련', '주문관련', '회원정보', '서비스', '기타') order by ID desc
+    </select>
+
+    <select id="selectOrderByDesc" resultType="com.itwill.joo.domain.Question">
+        select * from QUESTIONS order by ID desc
+    </select>
+
+    <!-- 문의 번호 통해 조회 -->
+    <select id="selectById" resultType="com.itwill.joo.domain.Question">
+        select * from QUESTIONS where ID = #{id}
+    </select>
+    
+    <!--유저 아이디를 통해 조회 -->
+    <select id="selectByUserId" resultType="com.itwill.joo.domain.Question">
+       select q.* 
+       from QUESTIONS Q 
+       JOIN USERS U 
+       ON q.u_id = u.id
+       where q.u_id = #{u_id}
+    </select>
+    
+    <update id = "updateTitleAndContent">
+        update QUESTIONS 
+        set QTITLE = #{qtitle}, QCONTENT = #{qcontent}, QMODIFIED_TIME = systimestamp
+        where ID = #{id}    
+    </update>
+    
+    <delete id = "deleteById">
+        delete from QUESTIONS where ID = #{id}    
+    </delete>
+    
+    <select id="selectWithUsersNameList" resultType="com.itwill.joo.dto.QuestionAdminListDto">
+        SELECT 
+        q.id as q_id,
+        q.qtitle as qcontent,
+        q.is_answered as is_answered,
+        q.qtype as qtype,
+        q.qcreated_time as qcreated_time,
+        q.qtitle as qtitle,
+        q.qreplycreated_time as qreplycreate_time,
+        u.uname as u_id
+        FROM questions q
+        JOIN users u ON q.u_id = u.id
+    </select>
+    
+    <select id="selectNoAnsweredFirst" resultType="com.itwill.joo.dto.QuestionAdminListDto">
+        SELECT 
+        q.id as q_id,
+        q.qtitle as qcontent,
+        q.is_answered as is_answered,
+        q.qtype as qtype,
+        q.qcreated_time as qcreated_time,
+        q.qtitle as qtitle,
+        q.qreplycreated_time as qreplycreate_time,
+        u.uname as u_id
+        FROM questions q
+        JOIN users u ON q.u_id = u.id
+        order by
+        IS_ANSWERED desc,
+        QCREATED_TIME
+    </select>
+    
+    <select id="selectWithUsersNameOne" resultType="com.itwill.joo.dto.QuestionAdminListDto">
+        SELECT 
+        q.id as q_id,
+        q.qtitle as qcontent,
+        q.is_answered as is_answered,
+        q.qtype as qtype,
+        q.qcreated_time as qcreated_time,
+        q.qtitle as qtitle,
+        q.qreplycreated_time as qreplycreate_time,
+        u.uname as u_id
+        FROM questions q
+        JOIN users u ON q.u_id = u.id
+        where q.id = #{id}
+    </select>
+        
+    <update id = "updateAnswere">
+        update QUESTIONS 
+        set is_answered = #{is_answered}, QREPLYCREATED_TIME = systimestamp
+        where ID = #{id}    
+    </update>
+
+</mapper>
