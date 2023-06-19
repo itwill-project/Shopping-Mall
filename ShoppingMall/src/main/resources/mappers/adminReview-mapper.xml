@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwill.joo.repository.AdminReviewRepository">
+  
+    <select id="selectWithUsersNameList" resultType="com.itwill.joo.dto.review.ReviewAdminListDto">
+        SELECT 
+        r.id as r_id,
+        r.rcontent as rcontent,
+        r.rcreated_time as rcreated_time,
+        u.uname as u_id
+        FROM REVIEWS r
+        JOIN users u ON r.u_id = u.id
+    </select>
+    
+   <select id="selectNoAnsweredFirst" resultType="com.itwill.joo.dto.review.ReviewAdminListDto">
+        SELECT 
+        r.id as r_id,
+        r.rcontent as rcontent,
+        r.rreview_reply as rreview_reply,
+        r.rcreated_time as rcreated_time,
+        u.uname as u_id
+        FROM REVIEWS r
+        JOIN users u ON r.u_id = u.id
+        order by
+        IS_ANSWERED desc,
+        QCREATED_TIME
+    </select>
+    
+   <select id="selectWithUsersNameOne" resultType="com.itwill.joo.dto.review.ReviewAdminListDto">
+        SELECT 
+        r.id as r_id,
+        r.rcontent as rcontent,
+        r.rreview_reply as rreview_reply,
+        r.rcreated_time as rcreated_time,
+        u.uname as u_id
+        FROM REVIEWS r
+        JOIN users u ON r.u_id = u.id
+        where r.id = #{id}
+    </select>
+        
+    <update id ="addReviewReply">
+        update REVIEWS
+        set RREVIEW_REPLY = #{rreview_reply}, RIS_TIME = systimestamp
+        where ID = #{id}    
+    </update>
+
+</mapper>

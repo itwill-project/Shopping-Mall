@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.itwill.joo.repository.BoardRepository">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND">
+			<foreach collection="typeArr" item="category" separator="OR">
+				<if test="category == 'T'.toString()">
+				btitle like '%'||#{keyword}||'%'
+				</if>
+				<if test="category == 'C'.toString()">
+				bcontent like '%'||#{keyword}||'%'
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+
+
+	<select id="select" resultType="com.itwill.joo.dto.board.BoardListDto">
+		select * from BOARDS order by id desc
+	</select>
+	
+	<select id="selectById" resultType="com.itwill.joo.domain.Board">
+		select * from BOARDS where id = #{id} order by id desc
+	</select>
+
+	<select id="selectCategory" resultType="com.itwill.joo.domain.Board">
+		select * from BOARDS where btype = #{btype} order by id desc
+	</select>
+
+	<select id="getListWithPaging" resultType="com.itwill.joo.dto.board.BoardListDto">
+		<![CDATA[
+		select * 
+		from 
+			( 
+			select /*+ INDEX_DESC(BOARDS PK_BOARD) */ rownum rn, t.* 
+    		from BOARDS t
+    		where 
+    		]]>
+    		<include refid="criteria"></include>
+			<![CDATA[
+    		id > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
+    		)
+			where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getListWithPagingByCategory" resultType="com.itwill.joo.dto.board.BoardListDto">
+		<![CDATA[
+		select * 
+		from 
+			( 
+			select /*+ INDEX_DESC(BOARDS PK_BOARD) */ rownum rn, t.*
+    		from BOARDS t
+    		where 
+    		]]>
+    		<include refid="criteria"></include>
+			<![CDATA[
+    		id > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount}) and btype = #{btype}
+    		)
+			where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(id) from BOARDS where 
+		<include refid="criteria"></include> 
+		id > 0
+	</select>
+	
+	<select id="getTotalCountByCategory" resultType="int">
+		select count(id) from BOARDS where 
+		<include refid="criteria"></include>
+		btype = #{btype}
+	</select>
+	
+	<insert id="insert">
+		insert into BOARDS (BTYPE, BTITLE, BCONTENT, bcreated_time, bmodified_time, u_id)
+		values (#{btype}, #{btitle}, #{bcontent}, systimestamp, #{bmodified_time}, #{u_id})
+	</insert>
+	
+	<update id="updateData">
+		update BOARDS
+		set BTITLE = #{btitle}, BCONTENT = #{bcontent}, Btype = #{btype}
+		where ID = #{id}
+	</update>
+	
+	<update id="updateViewCnt">
+		update BOARDS
+		set BVIEWED = bviewed + 20
+		where ID = #{id}
+	</update>
+	
+	<delete id="deleteById">
+		delete from BOARDS where ID = #{id}
+	</delete>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
