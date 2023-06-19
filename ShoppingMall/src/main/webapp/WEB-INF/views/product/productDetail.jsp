@@ -191,32 +191,7 @@
 					            	  });
 					            	});
 
-					            	function addProductToBasket() {
-					            		const id = $('#userId').val();
-					            	    const b_id = $('#basketId').val();
-					            	    const p_id = 22;
-					            	    const pcount = $('#selectpcount').val();
-					            		
-					            	    const param = {"b_id": b_id, "p_id": p_id, "pcount": pcount};
-					            	  
-					            	    $.ajax({
-					            	    url: '/joo/user/productAddBasket',
-					            	    type: 'POST',
-					            	    data: JSON.stringify(param),
-					            	    contentType: 'application/json',
-					            	    success: function(res) {
-					            	    	if(confirm('상품이 장바구니에 추가되었습니다. 장바구니로 이동할까요?')) {
-					            	    		window.location.href='/joo/user/myBasket';
-					            	    	} else {
-					            	      		window.location.href = '/joo/product/productDetail';
-					            	    	}
-					            	    },
-					            	    error: function(error) {
-					            	      alert(error);
-					            	    }
-					            	  });
-					            	}
-
+					           
 					            	function updatePcount() {
 					            		const id = $('#userId').val();
 					            	    const b_id = $('#basketId').val();
