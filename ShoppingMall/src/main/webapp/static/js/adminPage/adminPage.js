@@ -100,7 +100,7 @@
                                     
             selectedContens.innerHTML =  reviewlang;
             
-        }else if(selectedMenu=="quseries"){ 
+        }else if(selectedMenu=="question"){ 
            // 문의-------------------------                          
             selectedContens.innerHTML =   questionlang;
             resetQuestionList();

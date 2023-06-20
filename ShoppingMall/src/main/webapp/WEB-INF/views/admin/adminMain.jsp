@@ -23,7 +23,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                     <option selected>관리자 기능을 선택하시오</option>
                     <option value="product">상품관리</option>
                     <option value="user">유저관리</option>
-                    <option value="quseries">문의관리</option>
+                    <option value="question">문의관리</option>
                     <option value="review">리뷰관리</option>
                     <option value="post">게시글 관리</option>
                 </select>
