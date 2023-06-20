@@ -55,18 +55,18 @@ public class BoardService {
 		
 	}
 
-	public BoardDetailDto read(Long bno) {
+	public BoardDetailDto read(Long id) {
 		
-		Board entity = boardRepository.selectById(bno);
+		Board entity = boardRepository.selectById(id);
 		
 		BoardDetailDto dto = BoardDetailDto.fromEntity(entity);
 		
 		return dto;
 	}
 	
-	public int delete(Long bno) {
+	public int delete(Long id) {
 		
-		return boardRepository.deleteById(bno);
+		return boardRepository.deleteById(id);
 		
 	}
 	
@@ -86,10 +86,10 @@ public class BoardService {
 		return list;
 	}
 
-	public int count(Long bno) {
-		log.info("count({})", bno);
+	public int count(Long id) {
+		log.info("count({})", id);
 		
-		return boardRepository.updateViewCnt(bno);
+		return boardRepository.updateViewCnt(id);
 	}
 
 
