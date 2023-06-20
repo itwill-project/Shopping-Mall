@@ -27,8 +27,8 @@ public class BoardDetailDto {
 	
 	private int bviewed; // 게시물 조회수
 	
-	private Timestamp bcreated_time; // 게시물 작성일자
-	private Timestamp bmodified_time; // 게시물 수정일자
+	private LocalDateTime bcreated_time; // 게시물 작성일자
+	private LocalDateTime bmodified_time; // 게시물 수정일자
 	private Timestamp bstart_time; // 이벤트 시작일자
 	private Timestamp bend_time; // 이벤트 종료일자
 	

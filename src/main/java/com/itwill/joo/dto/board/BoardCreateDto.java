@@ -39,8 +39,8 @@ public class BoardCreateDto {
 				.btype(btype)
 				.btitle(btitle)
 				.bcontent(bcontent)
-				.bcreated_time(Timestamp.valueOf(LocalDateTime.now()))
-				.bmodified_time(Timestamp.valueOf(LocalDateTime.now().plusMonths(1)))
+				.bcreated_time((LocalDateTime.now()))
+				.bmodified_time((LocalDateTime.now().plusMonths(1)))
 				.bviewed(bviewed)
 				.bimage1(bimage1)
 				.build();
