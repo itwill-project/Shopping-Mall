@@ -26,10 +26,12 @@ public class Review {
 	
 	private String rcontent; // 후기 내용
 	private String review_image; // 후기에 올린 이미지 주소
+	private String rreview_reply;
 	
 	private int rratings; // 별점
 	
 	private LocalDateTime rcreated_time; // 후기 작성일자
 	private LocalDateTime rmodified_time; // 후기 수정일자
+	private LocalDateTime ris_time;
 
 }
