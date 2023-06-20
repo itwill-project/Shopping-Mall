@@ -23,7 +23,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                     <option selected>관리자 기능을 선택하시오</option>
                     <option value="product">상품관리</option>
                     <option value="user">유저관리</option>
-                    <option value="question">문의관리</option>
+                    <option value="quseries">문의관리</option>
                     <option value="review">리뷰관리</option>
                     <option value="post">게시글 관리</option>
                 </select>
@@ -90,13 +90,69 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
                     </div>
                 </div>
                 
+                <!-- 문의 수정(답변)위한 모달 -->
+                <div class="modal fade" id="questionUpdateModal" 
+                    data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5"
+                                    id="staticBackdropLabel">답변하기</h1>
+                                <button type="button" class="btn-close"
+                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input id="QUMq_id" type="number" class="d-none"/>
+                                
+                                <!-- 내용 체울 부분 -->
+                                <div class="row">
+                                    <div class="col">
+                                        작성자 : <input type="text" readonly id="QUMqname" class="form-control"/>
+                                    </div>
+                                    <div class="col">
+                                    타입 : <input type="text" readonly id="QUMtype" class="form-control"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3" >                                
+                                    <label for="QUMqtitle" class="form-label">
+                                    제목 : 
+                                    </label>
+                                    <input type="text" id="QUMqtitle" class="form-control" required readonly />
+                                </div>
+                                
+                                <div class="mb-3" >                                
+                                    <label for="QUMqcontent" class="form-label">
+                                    문의내용 : 
+                                    </label>
+                                    <input type="text" id="QUMqcontent" class="form-control" required readonly />
+                                </div>
+                                
+                                <div class="mb-3" >                                
+                                    <label for="QUMis_answered" class="form-label">
+                                        답변 : 
+                                    </label>
+                                    <input type="text" id="QUMis_answered" class="form-control" autofocus required placeholder="문의 내용에 관한 답변을 해주세요"/>
+                                </div>
+                            
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">취소</button>
+                                <button type="button" class="btn btn-primary" id="btnQuestionUpdate">답변완료</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
             
             <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
                 crossorigin="anonymous"></script>
             <script src="../static/js/adminPage/adminPage.js"></script>
-            <script src="../static/js/adminPage/questionModify.js"></script>
         </div>
     </body>
 </html>

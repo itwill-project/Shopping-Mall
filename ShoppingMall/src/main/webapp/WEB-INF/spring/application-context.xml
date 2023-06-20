@@ -14,7 +14,7 @@
         <!-- hikariConfig.setDriverClassName("...") 메서드 호출 -->
         <property name="driverClassName"
             value="oracle.jdbc.OracleDriver" />
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@project2_high?TNS_ADMIN=C:/wallet/Wallet_PROJECT2" />
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@project2_high?TNS_ADMIN=C:/OracleCloudServer/wallet/Wallet_PROJECT2" />
         <property name="username" value="ADMIN" />
         <property name="password" value="Project2summer^^" />
     </bean>
