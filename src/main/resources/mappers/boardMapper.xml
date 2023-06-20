@@ -45,6 +45,7 @@
     		id > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
     		)
 			where rn > (#{pageNum} -1) * #{amount}
+			order by id desc
 		]]>
 	</select>
 	
@@ -62,6 +63,7 @@
     		id > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount}) and btype = #{btype}
     		)
 			where rn > (#{pageNum} -1) * #{amount}
+			order by id desc
 		]]>
 	</select>
 	
@@ -69,17 +71,19 @@
 		select count(id) from BOARDS where 
 		<include refid="criteria"></include> 
 		id > 0
+		order by id desc
 	</select>
 	
 	<select id="getTotalCountByCategory" resultType="int">
 		select count(id) from BOARDS where 
 		<include refid="criteria"></include>
 		btype = #{btype}
+		order by id desc
 	</select>
 	
 	<insert id="insert">
-		insert into BOARDS (BTYPE, BTITLE, BCONTENT, bcreated_time, bmodified_time, u_id)
-		values (#{btype}, #{btitle}, #{bcontent}, systimestamp, #{bmodified_time}, #{u_id})
+		insert into BOARDS (BTYPE, BTITLE, BCONTENT, bcreated_time, bmodified_time)
+		values (#{btype}, #{btitle}, #{bcontent}, systimestamp, #{bmodified_time})
 	</insert>
 	
 	<update id="updateData">
