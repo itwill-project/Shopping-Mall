@@ -138,10 +138,21 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 											<c:param name="id" value="${ board.id }" />
 										</c:url> <a href="${ postDetailPage }">${ board.btitle }</a></td>
 									<td>${ board.bcontent }</td>
-									<td><fmt:formatDate value="${ board.bcreated_time }"
-											pattern="yyyy-MM-dd HH:mm:ss" /></td>
-									<td><fmt:formatDate value="${ board.bmodified_time }"
-											pattern="yyyy-MM-dd HH:mm:ss" /></td>
+									<%-- <td>${ board.bcreated_time }</td> --%>
+									
+									<td>
+									<fmt:parseDate value="${ board.bcreated_time }"
+											pattern="yyyy-MM-dd'T'HH:mm" var="parsedCreTime" type="both"/>
+									<fmt:formatDate value="${ parsedCreTime }" pattern="yyyy-MM-dd" />
+									</td>
+									
+									<td>
+									<fmt:parseDate value="${ board.bmodified_time }"
+											pattern="yyyy-MM-dd'T'HH:mm" var="parsedModiTime" type="both"/>
+									<fmt:formatDate value="${ parsedModiTime }" pattern="yyyy-MM-dd" />
+									</td>
+									<%-- <td><fmt:formatDate value="${ board.bmodified_time }"
+											pattern="yyyy-MM-dd HH:mm:ss" /></td> --%>
 									<td>${ board.bviewed }</td>
 								</tr>
 							</c:forEach>

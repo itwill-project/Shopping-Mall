@@ -131,21 +131,19 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 						<label class="form-label" for="bcontent">내용</label>
 						<textarea class="form-control" id="bcontent" readonly>${ board.bcontent }</textarea>
 					</div>
-					<%-- <div class="my-2">
-						<label class="form-label" for="writer">작성자</label> <input
-							class="form-control" id="writer" value="${ board.writer }" readonly />
-					</div> --%>
 					<div class="my-2">
 						<label class="form-label" for="bcreated_time">등록 일자</label>
-						<fmt:formatDate value="${ board.bcreated_time }" 
-							pattern="yyyy-MM-dd HH:mm:ss" var="bcreated_time" />
-						<input class="form-control" id="bcreated_time" value="${ bcreated_time }" readonly />
+							<fmt:parseDate value="${ board.bcreated_time }"
+											pattern="yyyy-MM-dd'T'HH:mm" var="parsedCreTime" type="both"/>
+							<fmt:formatDate value="${ parsedCreTime }" pattern="yyyy-MM-dd" var="parsedCreTime2" />
+						<input class="form-control" id="bcreated_time" value="${ parsedCreTime2 }"  readonly />
 					</div>
 					<div class="my-2">
 						<label class="form-label" for="update_date">종료 일자</label>
-						<fmt:formatDate value="${ board.bmodified_time }" 
-							pattern="yyyy-MM-dd HH:mm:ss" var="bmodified_time" />
-						<input class="form-control" id="bmodified_time" value="${ bmodified_time }" readonly />
+							<fmt:parseDate value="${ board.bcreated_time }"
+											pattern="yyyy-MM-dd'T'HH:mm" var="parsedModiTime" type="both"/>
+							<fmt:formatDate value="${ parsedModiTime }" pattern="yyyy-MM-dd" var="parsedModiTime2" />
+						<input class="form-control" id="bmodified_time" value="${ parsedModiTime2 }" readonly />
 					</div>
 					<%-- <div class="my-2">
 						<label class="form-label" for="image">이미지</label>
@@ -156,7 +154,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 				
 				<div class="card-footer">
 					<c:if test="${ loginId eq 'admin' }">
-	                    <c:url var="boardModifyPage" value="/joo/admin/postModify">
+	                    <c:url var="boardModifyPage" value="/admin/postModify">
 	                        <c:param name="id" value="${ board.id }"></c:param>
 	                    </c:url>
 	                    <a class="btn btn-outline-primary form-control"
