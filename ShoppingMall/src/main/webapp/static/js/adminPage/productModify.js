@@ -466,7 +466,7 @@
     };
     
     
-	
+    
     
    //-------------------------------------------- 리뷰관리 -----------------------------------------------------------------------
     // 문의랑 같음
@@ -541,21 +541,21 @@
         
         axios.post(reqUrl, data)
         .then((response) => {
-			console.log(response);
-			alert(`답변 완료 ${response.data}`);
-			resetReviewList();
-		})
-		.catch((error) => {
-			console.log(error);
-		})
+            console.log(response);
+            alert(`답변 완료 ${response.data}`);
+            resetReviewList();
+        })
+        .catch((error) => {
+            console.log(error);
+        })
         .finally(() => Reviewmodal.hide());
         
     });
     
     // 리뷰 요소들 꺼내서 정리할 문장 표현 (테이블에 문장을 추가하기 위해 설정하는 값)
     const makeReviewElemants = (data) => {
-	
-	// 리뷰리스트가 보여질 div
+    
+    // 리뷰리스트가 보여질 div
         const reviewList = document.querySelector('tbody#tableReviewBody');
         
         let reviewStr = '';
@@ -603,9 +603,9 @@
                         btn.addEventListener('click', showAnswerdModal);
                 }
         }
-	
-	
-	}
+    
+    
+    }
     // 리뷰 리스트 초기화
     const resetReviewList = async () => {
         const reqUrl = `/joo/api/AdminReview/ReviewList`;
