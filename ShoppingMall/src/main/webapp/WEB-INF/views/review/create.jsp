@@ -15,6 +15,8 @@ rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/S
 crossorigin="anonymous">
 </head>
 <body>
+
+	<jsp:include page="../common/header.jsp"></jsp:include>
 	<div class="container-fluid">
 		<header class="my-2 p-5 text-center text-primary">
 			<h1>후기 작성</h1>
@@ -92,7 +94,7 @@ crossorigin="anonymous">
         			const rcontent = $('#rcontent').val();
         			const data = {"p_id": pid, "u_id": uid, "o_id": oid, "rratings": rratings, "rcontent": rcontent};
         			
-        			alert(pid + " " + uid + " " + oid);
+
         			
         			// 선택된 별점이 없다면 경고 메시지를 출력.
     		        if (!rratings) {
@@ -114,7 +116,7 @@ crossorigin="anonymous">
         				success: function(res) {
         					console.log(res);
         					alert('리뷰 작성 성공');
-        					window.location.href='/joo/review/list';
+        					window.location.href='/joo';
         				}, error: function(error) {
         					console.log(error);
         				}
@@ -128,7 +130,7 @@ crossorigin="anonymous">
 		</script>
 </body>
 </html>
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 
 
 

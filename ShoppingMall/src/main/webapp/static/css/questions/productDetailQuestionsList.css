@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* QNA jsp에서 사용  */
+body {
+    background-color: #343A40;
+    color: #fff;
+}
+
+.navbar {
+    background-color: #333;
+}
+
+.navbar .nav-link {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.card {
+    background-color: #333;
+    border: 1px solid #888;
+    border-radius: 5px;
+}
+
+.card-header {
+    background-color: #444;
+    color: #fff;
+    font-weight: bold;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    color: #343A40;
+}
+
+.table a {
+    color: #343A40;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.card-body h2 {
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+}
+
+.table-title {
+    color: #fff;
+    font-weight: bold;
+}

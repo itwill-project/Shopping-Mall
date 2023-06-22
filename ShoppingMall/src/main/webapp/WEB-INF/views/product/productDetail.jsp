@@ -164,37 +164,33 @@
                 </div>
                 
                     <!-- 리뷰 -->
-                    <div id="reviews" class="container-fluid">
-					  <div class="card my-2 p-1 text-left" style="background-color: #343A40;">
+                    <div id="reviews" class="container-fluid d-flex align-items-center justify-content-center">
+					  <div class="card my-2 p-1 text-left" style="background-color: #343A40; width: 80%;">
 					    <h2 class="text-center" style="color: #fff;">&lt;${product.pname}&gt; 리뷰문의 (총 ${reviewList.size()}건)</h2>
-					    <div class="d-flex justify-content-center"> <!-- 가운데로 정렬되도록 설정 -->
-					      <table class="table table-dark text-center" style="width: 80%;"> <!-- 넓이를 80%로 조정 -->
-					        <thead>
-					          <tr>
-					            <th scope="col">#</th>
-					            <th scope="col">답변 여부</th>
-					            <th scope="col">리뷰 내용</th>
-					            <th scope="col">별점</th>
-					            <th scope="col">작성일자</th>
-					          </tr>
-					        </thead>
-					        <tbody>
-					          <c:forEach items="${reviewList}" var="review">
-					            <tr style="font-weight: bold;">
-					              <td>${review.id}</td>
-					              <td>${review.review_reply}</td>
-					              <td>${review.rcontent}</td>
-					              <td>${review.rratings}</td>
-					              <td>${review.rcreated_time}</td>
-					            </tr>
-					          </c:forEach>
-					        </tbody>
-					      </table>
-					    </div>
-					  </div>
+					    <div class="d-flex justify-content-center"> 
+					      <table class="card-body table table-dark text-center">
+							  <thead>
+							    <tr>
+							      <th scope="col">#</th>
+							      <th scope="col">답변 여부</th>
+							      <th scope="col" style="text-align: center;">리뷰 내용</th>
+							      <th scope="col" style="text-align: right;">별점</th>
+							      <th scope="col" style="text-align: right;">작성일자</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <c:forEach items="${reviewList}" var="review">
+							      <tr style="font-weight: bold;">
+							        <td class="align-middle">${review.id}</td>
+							        <td class="align-middle">${review.review_reply}</td>
+							        <td class="align-middle" style="text-align: center;">${review.rcontent}</td>
+							        <td class="align-middle" style="text-align: right;">${review.rratings}</td>
+							        <td class="align-middle" style="text-align: right;">${review.rcreated_time}</td>
+							      </tr>
+							    </c:forEach>
+							  </tbody>
+							</table>
 					</div>
-
-    
                     <!-- 문의 -->
                     <div id="question" class="container-fluid">
                                 <div class="card my-2 p-1 text-left" style="background-color: #343A40;">
