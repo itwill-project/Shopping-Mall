@@ -15,33 +15,8 @@
 	<body>
 	<div>
        <ul class="nav nav-tabs">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    카테고리
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="/joo/product/productsList">모아보기</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/joo/product/productsList">소주</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/joo/product/productsList">맥주</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/joo/product/productsList">와인</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/joo/product/productsList">양주</a>
-                    </li>
-                </ul>
-            </li>
             <li class="nav-item">
-                <a class="nav-link" href="/joo/product/productsNewList">신상</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/joo/product/productsHotList">랭킹</a>
+                <a class="nav-link" href="/joo/product/productsList">제품보기</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/joo/post/postList">공지사항/이벤트</a>

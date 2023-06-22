@@ -17,6 +17,6 @@ public interface AdminQuestionRepository {
 	List<QuestionAdminListDto> selectNoAnsweredFirst();
 
 	// 업데이트
-	int updateAnswered(Question entity);
+	int updateAnswere(Question entity);
 	
 }

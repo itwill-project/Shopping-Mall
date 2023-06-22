@@ -33,7 +33,7 @@ public class AdminQuestionService {
 
 	// 답변하기
 	public int answere(QuestionAnsweredUpdateDto dto) {
-		return adminQuestionRepository.updateAnswered(dto.toEntity());
+		return adminQuestionRepository.updateAnswere(dto.toEntity());
 	}
 	
 	
